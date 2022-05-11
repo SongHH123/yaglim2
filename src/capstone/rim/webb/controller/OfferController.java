@@ -128,6 +128,32 @@ public class OfferController {
 		return "viewPost";
 	}
 	
+	@RequestMapping("editPost")
+	public String editPost(Model model,
+			@RequestParam("post_id") int post_id
+			) {
+		
+		logger.info("home/editPost");
+		
+		List<Post> post = takeService.getPost_one(post_id);
+		model.addAttribute("post1", post );
+		
+		model.addAttribute("post", new Post() );
+		
+		
+		return "editPost";
+	}
+	@RequestMapping("suc_edit")
+	public String suc_edit(Model model,Post post
+			) {
+		
+		logger.info("home/suc_edit");
+		
+		takeService.updatePost(post);
+		
+		return "suc_edit";
+	}
+	
 	@RequestMapping(value = "/error", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public String error(Locale locale, Model model) {
 		

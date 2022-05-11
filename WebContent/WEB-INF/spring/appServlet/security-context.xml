@@ -21,6 +21,8 @@
  		<intercept-url access="permitAll" pattern="/viewBoard" />
 		<intercept-url access="permitAll" pattern="/viewPost" />
 		<intercept-url access="permitAll" pattern="/suc_post" />
+		<intercept-url access="permitAll" pattern="/editPost" />
+		<intercept-url access="permitAll" pattern="/suc_edit" />
 		<intercept-url access="isAuthenticated()" pattern="/postform" />
 		<intercept-url access="isAnonymous()" pattern="/signup" />
 		<intercept-url access="isAnonymous()" pattern="/suc_signup" />

@@ -41,7 +41,6 @@
   					<th>제목</th>
   					<th>작성자</th>
   					<th>작성시간</th>
-  					<th>링크</th>
   				</tr>
 			</thead>
 	
@@ -64,7 +63,6 @@
   					
   					<td><c:out value="${post['user_id']}"></c:out></td>
   					<td><c:out value="${post['post_regdate']}"></c:out></td>
-  					<td>링크 들어갈 자리<td>
   					</tr>
   				</c:forEach>  			
   			</tbody>	

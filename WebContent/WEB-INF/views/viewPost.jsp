@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix ="sf" uri ="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -48,10 +49,22 @@ Post(post_id=1, post_content=첫내용, post_regdate=null, IsDeleted=0, post_tit
 	제목 <c:out value="${post.post_title}"> </c:out><br/>
 	내용 <c:out value="${post.post_content}"> </c:out><br/>
 	
+	
+	현재 로그인: <c:out value="${pageContext.request.userPrincipal.name}"/><br/>
+
+
+ <c:set var="user" value="${pageContext.request.userPrincipal.name}"/>
+<c:if test="${post.user_id eq user}">
+
+<button type="button" onClick="location.href='editPost?post_id=${post.post_id}'">수정하기</button>
+<button type="button" onClick="location.href='editPost?post_id=${post.post_id}'">삭제하기</button>
+
+</c:if>
+
+	
 </c:forEach>
 	<br/><br/>
-	
-	${param.post_id}번 게시글
+
 
 
 

@@ -46,4 +46,7 @@ public class TakeService {
 	public void insertUserAuth(String user_id1, Authorities auth) {
 		takeDao.insertUserAuth(user_id1, auth);
 	}
+	public void updatePost(Post post) {
+		takeDao.updatePost(post);
+	}
 }

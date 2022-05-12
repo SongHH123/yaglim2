@@ -139,19 +139,27 @@ public class OfferController {
 		model.addAttribute("post1", post );
 		
 		model.addAttribute("post", new Post() );
-		
+
 		
 		return "editPost";
 	}
 	@RequestMapping("suc_edit")
-	public String suc_edit(Model model,Post post
-			) {
+	public String suc_edit(Model model,Post post) {
 		
 		logger.info("home/suc_edit");
 		
 		takeService.updatePost(post);
 		
 		return "suc_edit";
+	}
+	@RequestMapping("suc_del")
+	public String suc_del(Model model,@RequestParam("post_id") int post_id) {
+		
+		logger.info("home/suc_del");
+		
+		takeService.deletePost(post_id);
+		
+		return "suc_del";
 	}
 	
 	@RequestMapping(value = "/error", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")

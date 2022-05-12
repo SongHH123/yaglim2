@@ -57,7 +57,7 @@ Post(post_id=1, post_content=첫내용, post_regdate=null, IsDeleted=0, post_tit
 <c:if test="${post.user_id eq user}">
 
 <button type="button" onClick="location.href='editPost?post_id=${post.post_id}'">수정하기</button>
-<button type="button" onClick="location.href='editPost?post_id=${post.post_id}'">삭제하기</button>
+<button type="button" onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button>
 
 </c:if>
 

@@ -49,4 +49,7 @@ public class TakeService {
 	public void updatePost(Post post) {
 		takeDao.updatePost(post);
 	}
+	public void deletePost(int post_id) {
+		takeDao.deletePost(post_id);
+	}
 }

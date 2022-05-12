@@ -8,5 +8,7 @@
 </head>
 <body>
 수정완료
+<br/>
+<a href="${pageContext.request.contextPath}/">홈으로</a>
 </body>
 </html>

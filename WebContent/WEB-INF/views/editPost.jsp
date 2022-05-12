@@ -78,7 +78,6 @@
 			<textarea name="post_content" rows="10" cols="50" placeholder="내용을 작성하세요"></textarea><br/>
 		</div>
 
-
 		<input type="submit" value="수정 완료"  />
 
 	</sf:form>

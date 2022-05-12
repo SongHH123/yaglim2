@@ -47,10 +47,6 @@
 			</form>
 		</ul>
 	</nav>
-
-	<%-- ,post_title,user_id, Board_title
-Post(post_id=1, post_content=첫내용, post_regdate=null, IsDeleted=0, post_title=첫게시글, user_id=a, board_title=1 --%>
-
 	<table id="PF">
 		<c:forEach var="post" items="${post}">
 			<tr>

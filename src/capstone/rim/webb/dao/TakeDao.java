@@ -49,7 +49,7 @@ public class TakeDao {
 		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 	}
 	public List <Post> getPost(){
-		String sqlStatement = "select * from post"; //where board_id 추가
+		String sqlStatement = "select * from post where not IsDeleted=1"; //where board_id 추가
 		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
 			@Override
 			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{
@@ -89,13 +89,18 @@ public class TakeDao {
 		String user_id= post.getUser_id();
 		int board_title=post.getBoard_title();
 
-		String sqlStatement = "update post set user_id=?, post_content=?, post_regdate=?, IsDeleted=?, post_title=?, board_title=? where post_id=?";
-		return (jdbcTemplate.update(sqlStatement, new Object[] { post_id, post_content, post_regdate, IsDeleted, post_title, user_id, board_title }) == 1);
+		String sqlStatement = "update post set post_content=?, post_regdate=?, post_title=?, board_title=? where post_id=?";
+
+		return (jdbcTemplate.update(sqlStatement,
+				new Object[] { post_content, post_regdate, post_title, board_title, post_id}) == 1);
 
 	}
-	public boolean deletePost(int post_id) {
-		String sqlStatement = "delete from post where post_id=?";
-		return (jdbcTemplate.update(sqlStatement, new Object[] { post_id }) == 1);
+	public boolean deletePost(int post_id2) {
+		int post_id= post_id2;
+		int IsDeleted = 1;
+		
+		String sqlStatement = "update post set IsDeleted= ? where post_id=" + post_id;
+		return (jdbcTemplate.update(sqlStatement, new Object[] { IsDeleted }) == 1);
 
 	}
 
@@ -107,7 +112,7 @@ public class TakeDao {
 				Post post = new Post();
 				post.setPost_id(rs.getInt("post_id"));
 				post.setPost_content(rs.getString("post_content")); 
-//				post.setPost_regdate(rs.getTimestamp("post_regdate"));
+				post.setPost_regdate(rs.getTimestamp("post_regdate"));
 				post.setPost_title(rs.getString("post_title"));
 				post.setUser_id(rs.getString("user_id"));
 				post.setBoard_title(rs.getInt("board_title"));

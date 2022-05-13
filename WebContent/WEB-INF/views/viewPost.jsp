@@ -74,10 +74,13 @@
 			<c:set var="user" value="${pageContext.request.userPrincipal.name}" />
 			<c:if test="${post.user_id eq user}">
 				<tr>
-					<td colspan="3"><button type="button"
+					<td colspan="3">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="button" class="btn btn-primary btn-sm me-md-2"
 							onClick="location.href='editPost?post_id=${post.post_id}'">수정하기</button>
-						<button type="button"
-                     onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button></td>
+						<button type="button" class="btn btn-danger btn-sm"
+                     onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button></div>
+                     </td>
 				</tr>
 			</c:if>
 		</c:forEach>
@@ -86,7 +89,7 @@
 				<sf:form method="post" modelAttribute="comment"
 				action="${pageContext.request.contextPath}/suc_comment">
 					<input type="text">
-					<button type="submit">댓글 달기</button>
+					<button id="new" type="submit">댓글 달기</button>
 				</sf:form>
 			</td>
 		</tr>
@@ -94,7 +97,7 @@
 				 <tr>
   					<td style="text-align:left;"><c:out value="${comment['user_id']}"></c:out></td>
   					<td><c:out value="${comment['comment_regdate']}"></c:out></td>
-  					<td>버튼 들어갈 자리</td>
+  					<td><button id="" type="submit" class="btn btn-lg btn-danger btn-sm">삭제</button></td>
   				</tr>
   				<tr>
   					<td colspan="3"><c:out value="${comment['comment_content']}"></c:out></td>

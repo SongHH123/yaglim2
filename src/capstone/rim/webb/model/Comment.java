@@ -1,5 +1,7 @@
 package capstone.rim.webb.model;
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +14,8 @@ import lombok.ToString;
 public class Comment {
 	private int comment_id;
 	private String comment_content;
-	private String comment_regdate;
+	private Timestamp comment_regdate;
+	
 	private String user_id;
+	private int post_id;
 }

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import capstone.rim.webb.model.Comment;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.service.TakeService;
 
@@ -36,6 +37,9 @@ public class HomeController {
 
 		List<Post> post = offerService.getPost();
 		model.addAttribute("post", post);
+		
+		List<Comment> comment = offerService.getComment();
+		model.addAttribute("commnet", comment);
 		
 		return "home";
 	}

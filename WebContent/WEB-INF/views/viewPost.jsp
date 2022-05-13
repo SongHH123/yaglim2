@@ -81,7 +81,20 @@
 				</tr>
 			</c:if>
 		</c:forEach>
-	</table>
+
+<table>
+<div>
+	<div class ="comment">
+		<textarea id ="cmt" name="cmt" placeholder ="내용을 입력해주세요."></textarea>
+	</div>
+	<div class ="comment-button">
+		<button id ="cmt-btn">댓글달기</button>
+	</div>
+</div>
+</table>
+	
+
+
 </body>
 
 </html>

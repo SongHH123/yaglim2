@@ -135,11 +135,59 @@ public class TakeDao {
 				Comment comment = new Comment();
 				comment.setComment_id(rs.getInt("comment_id"));
 				comment.setComment_content(rs.getNString("comment_content"));
-				comment.setUser_id(rs.getString("comment_user_id"));
+				comment.setComment_regdate(rs.getTimestamp("comment_regdate"));
+				comment.setUser_id(rs.getString("user_id"));
+				//comment.setC_IsDeleted(rs.getInt("c_IsDeleted"));
+				comment.setPost_id(rs.getInt("post_id"));
 				return comment;
 			}
 		});
 	}
+	
+	
+	
+	
+	public boolean insertComment(Comment comment) {
+		int comment_id= (getRowComment() + 1);
+		String comment_content= comment.getComment_content();
+		Timestamp comment_regdate= new Timestamp(System.currentTimeMillis());
+		//int c_IsDeleted= 0;
+		int post_id= comment.getPost_id();
+		String user_id= comment.getUser_id();
+		
+		String sqlStatement = "insert into comment (comment_id, comment_content, comment_regdate, post_id, user_id) value (?,?,?,?,?)";
+		
+		return (jdbcTemplate.update(sqlStatement,
+				new Object[] { comment_id, comment_content, comment_regdate, post_id, user_id }) == 1);
+	
+	}
+	
+	public boolean updateComment(Comment comment) {
+		int comment_id= comment.getPost_id();
+		String comment_content= comment.getComment_content();
+		Timestamp comment_regdate= new Timestamp(System.currentTimeMillis());
+		//int c_IsDeleted=
+		int post_id= comment.getPost_id();
+		String user_id= comment.getUser_id();
+
+		String sqlStatement = "update comment set comment_content=?, comment_regdate=? where comment_id=?";
+
+		return (jdbcTemplate.update(sqlStatement,
+				new Object[] { comment_content, comment_regdate, comment_id}) == 1);
+
+	}
+	/*
+	public boolean deleteComment(int comment_id2) {
+		int comment_id= comment_id2;
+		int c_IsDeleted = 1;
+		
+		String sqlStatement = "update comment set c_IsDeleted= ? where comment_id=" + comment_id;
+		return (jdbcTemplate.update(sqlStatement, new Object[] { c_IsDeleted }) == 1);
+
+	}
+*/	
+	
+	
 	
 	public boolean insertUser(User user) {
 		String user_id = user.getUser_id();

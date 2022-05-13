@@ -30,6 +30,15 @@ public class TakeService {
 		return takeDao.getComment();
 	}
 	
+	public void insertComment(Comment comment) {
+		takeDao.insertComment(comment);
+	}
+	
+	public void updateComment(Comment comment) {
+		takeDao.updateComment(comment);
+	}
+	
+	
 	public List<Board> getBoard(){
 		return takeDao.getBoard();
 	}

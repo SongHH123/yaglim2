@@ -38,9 +38,6 @@ public class HomeController {
 		List<Post> post = offerService.getPost();
 		model.addAttribute("post", post);
 		
-		List<Comment> comment = offerService.getComment();
-		model.addAttribute("commnet", comment);
-		
 		return "home";
 	}
 	

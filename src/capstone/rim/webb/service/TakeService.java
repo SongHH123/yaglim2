@@ -26,16 +26,12 @@ public class TakeService {
 	}
 	
 	
-	public List<Comment> getComment(){
-		return takeDao.getComment();
+	public List<Comment> getComment(int P_id){
+		return takeDao.getComment(P_id);
 	}
 	
 	public void insertComment(Comment comment) {
 		takeDao.insertComment(comment);
-	}
-	
-	public void updateComment(Comment comment) {
-		takeDao.updateComment(comment);
 	}
 	
 	

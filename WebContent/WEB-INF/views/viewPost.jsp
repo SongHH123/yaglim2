@@ -50,7 +50,7 @@
 	<table id="PF">
 		<c:forEach var="post" items="${post}">
 			<tr>
-				<td><c:out value="${post.post_id}" />번 게시물</td>
+				<td style="width:20%"><c:out value="${post.post_id}" />번 게시물</td>
 				<td><c:if test="${post['board_title'] eq 1}">
   						<c:out value="상비약 나눔"></c:out></c:if>
   						<c:if test="${post['board_title'] eq 2}">
@@ -68,7 +68,7 @@
 			</tr>
 
 			<tr>
-				<td style="height:300px" colspan="3"><c:out value="${post.post_content}" />adfasdfasdfasdf</td>
+				<td style="height:300px" colspan="3"><c:out value="${post.post_content}" /></td>
 			</tr>
 
 			<c:set var="user" value="${pageContext.request.userPrincipal.name}" />
@@ -77,24 +77,30 @@
 					<td colspan="3"><button type="button"
 							onClick="location.href='editPost?post_id=${post.post_id}'">수정하기</button>
 						<button type="button"
-							onClick="location.href='editPost?post_id=${post.post_id}'">삭제하기</button></td>
+                     onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button></td>
 				</tr>
 			</c:if>
 		</c:forEach>
-
-<table>
-<div>
-	<div class ="comment">
-		<textarea id ="cmt" name="cmt" placeholder ="내용을 입력해주세요."></textarea>
-	</div>
-	<div class ="comment-button">
-		<button id ="cmt-btn">댓글달기</button>
-	</div>
-</div>
-</table>
-	
-
-
+		<tr>
+			<td colspan="3">
+				<sf:form method="post" modelAttribute="comment"
+				action="${pageContext.request.contextPath}/suc_comment">
+					<input type="text">
+					<button type="submit">댓글 달기</button>
+				</sf:form>
+			</td>
+		</tr>
+		<c:forEach var="comment" items="${comment}">
+				 <tr>
+  					<td style="text-align:left;"><c:out value="${comment['user_id']}"></c:out></td>
+  					<td><c:out value="${comment['comment_regdate']}"></c:out></td>
+  					<td>버튼 들어갈 자리</td>
+  				</tr>
+  				<tr>
+  					<td colspan="3"><c:out value="${comment['comment_content']}"></c:out></td>
+  				</tr>
+  		</c:forEach>  			
+		</table>
 </body>
 
 </html>

@@ -127,26 +127,23 @@ public class TakeDao {
 		String sqlStatement ="select count(*) from comment";
 		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 	}
-	public List <Comment> getComment(){
-		String sqlStatement = "select * from comment"; //where post_id 추가
+	public List <Comment> getComment(int P_id){
+		String sqlStatement = "select * from comment where post_id ="+ P_id;
 		return jdbcTemplate.query(sqlStatement, new RowMapper <Comment>() {
 			@Override
 			public Comment mapRow(ResultSet rs, int rowNum) throws SQLException{
 				Comment comment = new Comment();
 				comment.setComment_id(rs.getInt("comment_id"));
-				comment.setComment_content(rs.getNString("comment_content"));
+				comment.setComment_content(rs.getString("comment_content"));
 				comment.setComment_regdate(rs.getTimestamp("comment_regdate"));
 				comment.setUser_id(rs.getString("user_id"));
 				//comment.setC_IsDeleted(rs.getInt("c_IsDeleted"));
-				comment.setPost_id(rs.getInt("post_id"));
 				return comment;
 			}
 		});
 	}
 	
-	
-	
-	
+	//insert comment
 	public boolean insertComment(Comment comment) {
 		int comment_id= (getRowComment() + 1);
 		String comment_content= comment.getComment_content();
@@ -161,21 +158,6 @@ public class TakeDao {
 				new Object[] { comment_id, comment_content, comment_regdate, post_id, user_id }) == 1);
 	
 	}
-	
-	public boolean updateComment(Comment comment) {
-		int comment_id= comment.getPost_id();
-		String comment_content= comment.getComment_content();
-		Timestamp comment_regdate= new Timestamp(System.currentTimeMillis());
-		//int c_IsDeleted=
-		int post_id= comment.getPost_id();
-		String user_id= comment.getUser_id();
-
-		String sqlStatement = "update comment set comment_content=?, comment_regdate=? where comment_id=?";
-
-		return (jdbcTemplate.update(sqlStatement,
-				new Object[] { comment_content, comment_regdate, comment_id}) == 1);
-
-	}
 	/*
 	public boolean deleteComment(int comment_id2) {
 		int comment_id= comment_id2;
@@ -187,8 +169,6 @@ public class TakeDao {
 	}
 */	
 	
-	
-	
 	public boolean insertUser(User user) {
 		String user_id = user.getUser_id();
 		String user_pw = "{noop}" + user.getUser_pw();
@@ -199,6 +179,7 @@ public class TakeDao {
 		return (jdbcTemplate.update(sqlStatement,
 				new Object[] { user_id, user_pw, user_phone, enabled }) == 1);
 	}
+	
 	public boolean insertUserAuth(String user_id1, Authorities auth) {
 		String user_id = user_id1;
 		String authority= "ROLE_USER";

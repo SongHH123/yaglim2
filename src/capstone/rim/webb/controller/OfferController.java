@@ -23,6 +23,7 @@ import capstone.rim.webb.model.User;
 import capstone.rim.webb.service.TakeService;
 import capstone.rim.webb.model.Authorities;
 import capstone.rim.webb.model.Board;
+import capstone.rim.webb.model.Comment;
 
 @Controller
 public class OfferController {
@@ -113,9 +114,7 @@ public class OfferController {
 	}
 	
 	@GetMapping("/viewPost")
-	public String viewPost(Model model,
-			@RequestParam("post_id") int post_id
-			) {
+	public String viewPost(Model model, @RequestParam("post_id") int post_id) {
 		
 		logger.info("home/viewpost");
 		
@@ -125,13 +124,24 @@ public class OfferController {
 		List<Post> post = takeService.getPost_one(post_id);
 		model.addAttribute("post", post);
 		
+		List<Comment> comment = takeService.getComment(post_id);
+		model.addAttribute("comment", comment);
+				
 		return "viewPost";
 	}
 	
+	//not yet
+	@RequestMapping(value = "/suc_comment")
+	public String suc_comment(Locale locale, Model model) {
+		
+		logger.info("home/suc_comment");
+		model.addAttribute("comment", new Comment());
+		
+		return "suc_comment";
+	}
+	
 	@RequestMapping("editPost")
-	public String editPost(Model model,
-			@RequestParam("post_id") int post_id
-			) {
+	public String editPost(Model model, @RequestParam("post_id") int post_id) {
 		
 		logger.info("home/editPost");
 		
@@ -167,7 +177,7 @@ public class OfferController {
 		
 		logger.info("home/error");
 		
-		
 		return "error";
 	}
+	
 }

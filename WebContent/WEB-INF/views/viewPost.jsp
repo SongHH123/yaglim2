@@ -19,7 +19,6 @@
 <title>게시판</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/bar.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/view_details.css">
-
 </head>
 <body style="margin: 0px;">
 	<nav id="menubar">
@@ -52,13 +51,13 @@
 			<tr>
 				<td style="width:20%"><c:out value="${post.post_id}" />번 게시물</td>
 				<td><c:if test="${post['board_title'] eq 1}">
-  						<c:out value="상비약 나눔"></c:out></c:if>
+  						<c:out value="상비약 나눔 게시판"></c:out></c:if>
   						<c:if test="${post['board_title'] eq 2}">
-  						<c:out value="질문"></c:out></c:if>
+  						<c:out value="질문 게시판"></c:out></c:if>
   						<c:if test="${post['board_title'] eq 3}">
-  						<c:out value="정보나눔"></c:out></c:if>
+  						<c:out value="정보나눔 게시판"></c:out></c:if>
   						<c:if test="${post['board_title'] eq 4}">
-  						<c:out value="기타"></c:out></c:if></td>
+  						<c:out value="기타 게시판"></c:out></c:if></td>
 				<td><c:out value="${post.user_id}" /></td>
 			</tr>
 
@@ -84,15 +83,19 @@
 				</tr>
 			</c:if>
 		</c:forEach>
+		<c:forEach var="post" items="${post}">
 		<tr>
 			<td colspan="3">
-				<sf:form method="post" modelAttribute="comment"
+				<sf:form method="post" modelAttribute="new_comment"
 				action="${pageContext.request.contextPath}/suc_comment">
-					<input type="text">
-					<button id="new" type="submit">댓글 달기</button>
+				<p style="display:none;"><input type="text" name="user_id" value="${pageContext.request.userPrincipal.name}"></p>
+				<p style="display:none;"><input type="text" name="post_id" value="${post.post_id}"></p>
+				<input type="text" name="comment_content">
+					<button id="new" class="btn btn-primary btn-sm" type="submit">댓글 달기</button>
 				</sf:form>
 			</td>
 		</tr>
+		</c:forEach>
 		<c:forEach var="comment" items="${comment}">
 				 <tr>
   					<td style="text-align:left;"><c:out value="${comment['user_id']}"></c:out></td>

@@ -127,15 +127,19 @@ public class OfferController {
 		List<Comment> comment = takeService.getComment(post_id);
 		model.addAttribute("comment", comment);
 				
+		model.addAttribute("new_comment", new Comment());
+		
 		return "viewPost";
 	}
 	
 	//not yet
 	@RequestMapping(value = "/suc_comment")
-	public String suc_comment(Locale locale, Model model) {
+	public String suc_comment(Model model, @Validated Comment comment,
+			BindingResult result, @RequestParam("post_id") int post_id) {
 		
 		logger.info("home/suc_comment");
-		model.addAttribute("comment", new Comment());
+		
+		takeService.insertComment(comment);
 		
 		return "suc_comment";
 	}

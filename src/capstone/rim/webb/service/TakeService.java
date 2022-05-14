@@ -34,6 +34,9 @@ public class TakeService {
 		takeDao.insertComment(comment);
 	}
 	
+	public void deleteComment(int comment_id) {
+		takeDao.deleteComment(comment_id);
+	}
 	
 	public List<Board> getBoard(){
 		return takeDao.getBoard();

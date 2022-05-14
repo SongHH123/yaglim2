@@ -176,6 +176,16 @@ public class OfferController {
 		return "suc_del";
 	}
 	
+	@RequestMapping("del_comment")
+	public String del_comment(Model model, @RequestParam("comment_id") int comment_id) {
+		
+		logger.info("home/suc_del_comment");
+		
+		takeService.deleteComment(comment_id);
+		
+		return "suc_del_comment";
+	}
+	
 	@RequestMapping(value = "/error", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public String error(Locale locale, Model model) {
 		

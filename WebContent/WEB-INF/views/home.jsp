@@ -32,7 +32,7 @@
 		</form>  
       </ul>
   </nav>
-  <img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="dd"/>
+  <img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
   <div id="gap">
   		  <table class="table" style="text-align:center">
   			<thead class="table-light">

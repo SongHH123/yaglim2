@@ -46,6 +46,7 @@
 			</form>
 		</ul>
 	</nav>
+	<img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
 	<table id="PF">
 		<c:forEach var="post" items="${post}">
 			<tr>
@@ -100,7 +101,10 @@
 				 <tr>
   					<td style="text-align:left;"><c:out value="${comment['user_id']}"></c:out></td>
   					<td><c:out value="${comment['comment_regdate']}"></c:out></td>
-  					<td><button id="" type="submit" class="btn btn-lg btn-danger btn-sm">삭제</button></td>
+					<c:if test="${comment.user_id eq user}">
+  					<td><button id="del_comment" class="btn btn-lg btn-danger btn-sm"
+  					onClick="location.href='del_comment?comment_id=${comment.comment_id}'">삭제</button></td>
+  					</c:if>
   				</tr>
   				<tr>
   					<td colspan="3"><c:out value="${comment['comment_content']}"></c:out></td>

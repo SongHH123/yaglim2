@@ -18,4 +18,5 @@ public class Comment {
 	
 	private String user_id;
 	private int post_id;
+	private int c_IsDeleted; 
 }

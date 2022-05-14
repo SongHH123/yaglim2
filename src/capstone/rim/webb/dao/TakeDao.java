@@ -128,7 +128,7 @@ public class TakeDao {
 		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 	}
 	public List <Comment> getComment(int P_id){
-		String sqlStatement = "select * from comment where post_id ="+ P_id;
+		String sqlStatement = "select * from comment where post_id ="+ P_id +" and c_IsDeleted = 0";
 		return jdbcTemplate.query(sqlStatement, new RowMapper <Comment>() {
 			@Override
 			public Comment mapRow(ResultSet rs, int rowNum) throws SQLException{
@@ -148,26 +148,24 @@ public class TakeDao {
 		int comment_id= (getRowComment() + 1);
 		String comment_content= comment.getComment_content();
 		Timestamp comment_regdate= new Timestamp(System.currentTimeMillis());
-		//int c_IsDeleted= 0;
+		int c_IsDeleted= 0;
 		int post_id= comment.getPost_id();
 		String user_id= comment.getUser_id();
 		
-		String sqlStatement = "insert into comment (comment_id, comment_content, comment_regdate, post_id, user_id) value (?,?,?,?,?)";
+		String sqlStatement = "insert into comment (comment_id, comment_content, comment_regdate, post_id, user_id, c_IsDeleted) value (?,?,?,?,?,?)";
 		
 		return (jdbcTemplate.update(sqlStatement,
-				new Object[] { comment_id, comment_content, comment_regdate, post_id, user_id }) == 1);
+				new Object[] { comment_id, comment_content, comment_regdate, post_id, user_id, c_IsDeleted }) == 1);
 	
 	}
-	/*
-	public boolean deleteComment(int comment_id2) {
-		int comment_id= comment_id2;
-		int c_IsDeleted = 1;
-		
-		String sqlStatement = "update comment set c_IsDeleted= ? where comment_id=" + comment_id;
-		return (jdbcTemplate.update(sqlStatement, new Object[] { c_IsDeleted }) == 1);
 
-	}
-*/	
+	public boolean deleteComment(int comment_id) {
+		int del_comment_id= comment_id;
+		
+		String sqlStatement = "update comment set c_IsDeleted= 1 where comment_id = " + del_comment_id;
+		return (jdbcTemplate.update(sqlStatement) == 1);
+
+	}	
 	
 	public boolean insertUser(User user) {
 		String user_id = user.getUser_id();

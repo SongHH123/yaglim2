@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script>
+alert('댓글이 등록되었습니다.');
+window.history.back();</script>
 </head>
 <body>
-
 </body>
 </html>

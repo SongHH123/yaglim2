@@ -47,11 +47,11 @@
 		</ul>
 	</nav>
 	<img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
-	<table id="PF">
+	<table>
 		<c:forEach var="post" items="${post}">
 			<tr>
 				<td style="width:20%"><c:out value="${post.post_id}" />번 게시물</td>
-				<td><c:if test="${post['board_title'] eq 1}">
+				<td style="width:60%"><c:if test="${post['board_title'] eq 1}">
   						<c:out value="상비약 나눔 게시판"></c:out></c:if>
   						<c:if test="${post['board_title'] eq 2}">
   						<c:out value="질문 게시판"></c:out></c:if>
@@ -59,7 +59,7 @@
   						<c:out value="정보나눔 게시판"></c:out></c:if>
   						<c:if test="${post['board_title'] eq 4}">
   						<c:out value="기타 게시판"></c:out></c:if></td>
-				<td><c:out value="${post.user_id}" /></td>
+				<td style="width:20%"><c:out value="${post.user_id}" /></td>
 			</tr>
 
 			<tr>
@@ -74,12 +74,11 @@
 			<c:set var="user" value="${pageContext.request.userPrincipal.name}" />
 			<c:if test="${post.user_id eq user}">
 				<tr>
-					<td colspan="3">
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<td colspan="3" style="text-align:right;">
 					<button type="button" class="btn btn-primary btn-sm me-md-2"
 							onClick="location.href='editPost?post_id=${post.post_id}'">수정하기</button>
 						<button type="button" class="btn btn-danger btn-sm"
-                     onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button></div>
+                     onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button>
                      </td>
 				</tr>
 			</c:if>
@@ -99,10 +98,10 @@
 		</c:forEach>
 		<c:forEach var="comment" items="${comment}">
 				 <tr>
-  					<td style="text-align:left;"><c:out value="${comment['user_id']}"></c:out></td>
-  					<td><c:out value="${comment['comment_regdate']}"></c:out></td>
+  					<td><c:out value="${comment['user_id']}"></c:out></td>
+  					<td style="text-align:right;"><c:out value="${comment['comment_regdate']}"></c:out></td>
 					<c:if test="${comment.user_id eq user}">
-  					<td><button id="del_comment" class="btn btn-lg btn-danger btn-sm"
+  					<td style="text-align:left;"><button id="del_comment" class="btn btn-lg btn-danger btn-sm"
   					onClick="location.href='del_comment?comment_id=${comment.comment_id}'">삭제</button></td>
   					</c:if>
   				</tr>

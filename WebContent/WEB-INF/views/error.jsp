@@ -5,8 +5,8 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-	alert('잘못된 접근입니다.');
-	window.location = "${pageContext.request.contextPath}/"
+	alert('잘못된 방식입니다.');
+	window.history.back();
 </script>
 <%
 	request.setCharacterEncoding("UTF-8");

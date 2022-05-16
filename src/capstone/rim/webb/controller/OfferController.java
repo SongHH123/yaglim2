@@ -132,15 +132,22 @@ public class OfferController {
 		return "viewPost";
 	}
 	
-	//not yet
 	@RequestMapping(value = "/suc_comment")
 	public String suc_comment(Model model, @Validated Comment comment,
 			BindingResult result, @RequestParam("post_id") int post_id) {
 		
-		logger.info("home/suc_comment");
-		
-		takeService.insertComment(comment);
-		
+		if(result.hasErrors()) {
+			//Error발생 시 수행되는 부분
+			
+			System.out.println("===Form data does not validated===");
+			List<ObjectError> errors = result.getAllErrors();
+			
+			for(ObjectError error: errors) {
+				System.out.println(error.getDefaultMessage());
+			}
+			return "error";
+		}
+		takeService.insertComment(comment);	
 		return "suc_comment";
 	}
 	

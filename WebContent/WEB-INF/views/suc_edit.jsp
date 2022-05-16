@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수정완료</title>
+<script>
+alert('게시글이 등록되었습니다.');
+window.location.href='${pageContext.request.contextPath}/';
+</script>
 </head>
 <body>
-수정완료
-<br/>
-<a href="${pageContext.request.contextPath}/">홈으로</a>
 </body>
 </html>

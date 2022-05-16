@@ -52,6 +52,9 @@
 
 <c:forEach var="post1" items="${post1}">
 	<c:set var="id" value="${post1.post_id}"></c:set>
+	<c:set var="content" value="${post1.post_content}"></c:set>
+	<c:set var="title" value="${post1.post_title}"></c:set>
+	<c:set var="b_title" value="${post1.board_title}"></c:set>
 </c:forEach>
 
 
@@ -64,18 +67,19 @@
 		게시글 번호 <input type="text" name="post_id" value="${id}" style="width:15%" readonly>
 		<div>
 			<label>게시판 종류</label> <select name="board_title">
-				<option value="1">상비약 나눔 게시판</option>
-				<option value="2">질문 게시판</option>
-				<option value="3">정보 나눔 게시판</option>
-				<option value="4">기타(잡담)</option>
+				<option value="1"
+					<c:if test="${b_title eq 1}"> selected </c:if>> 상비약 나눔 게시판</option>
+				<option value="2" <c:if test="${b_title eq 2}"> selected </c:if> >질문 게시판</option>
+				<option value="3" <c:if test="${b_title eq 3}"> selected </c:if> >정보 나눔 게시판</option>
+				<option value="4" <c:if test="${b_title eq 4}"> selected </c:if> >기타(잡담)</option>
 			</select>
 		</div>
 
 		<div>
-			<input type="text" name="post_title" style="width:101.5%" placeholder="제목을 작성해주세요."/> <br/>
+			제목 <input type="text" name="post_title" style="width:101.5%" value="${title}"/><br/>
 		</div>
 		<div>
-			<textarea name="post_content" rows="10" cols="50" placeholder="내용을 작성하세요"></textarea><br/>
+			내용 <textarea name="post_content" rows="10" cols="50">${content}</textarea><br/>
 		</div>
 
 		<input type="submit" value="수정 완료"  />

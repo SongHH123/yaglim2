@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,7 +65,7 @@
   					<c:out value="${post['post_title']}"></c:out></a></td>
   					
   					<td><c:out value="${post['user_id']}"></c:out></td>
-  					<td><c:out value="${post['post_regdate']}"></c:out></td>
+  					<td><c:out value="${fn:substring(post['post_regdate'], 0, 16)}"></c:out></td>
   					</tr>
   				</c:forEach>  			
   			</tbody>	

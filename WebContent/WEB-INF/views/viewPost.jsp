@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +65,7 @@
 
 			<tr>
 				<td colspan="2"><c:out value="${post.post_title}" /></td>
-				<td><c:out value="${post.post_regdate}"/>...</td>
+				<td><c:out value="${fn:substring(post.post_regdate, 0, 16)}"></c:out></td>
 			</tr>
 
 			<tr>
@@ -99,7 +100,7 @@
 		<c:forEach var="comment" items="${comment}">
 				 <tr>
   					<td><c:out value="${comment['user_id']}"></c:out></td>
-  					<td style="text-align:right;"><c:out value="${comment['comment_regdate']}"></c:out></td>
+  					<td style="text-align:right;"><c:out value="${fn:substring(comment['comment_regdate'], 0, 16)}"></c:out></td>
 					<c:if test="${comment.user_id eq user}">
   					<td style="text-align:left;"><button id="del_comment" class="btn btn-lg btn-danger btn-sm"
   					onClick="location.href='del_comment?comment_id=${comment.comment_id}'">삭제</button></td>

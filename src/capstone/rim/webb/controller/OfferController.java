@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
+import capstone.rim.webb.model.medi;
 import capstone.rim.webb.service.TakeService;
 import capstone.rim.webb.model.Authorities;
 import capstone.rim.webb.model.Board;
@@ -180,6 +181,26 @@ public class OfferController {
 		takeService.deleteComment(comment_id);
 		
 		return "suc_del_comment";
+	}
+	
+	@RequestMapping("manage")
+	public String manage(Model model, @RequestParam("user_id") String user_id) {
+		
+		logger.info("home/magage");
+		List<medi> medi = takeService.getMedi(user_id);
+		model.addAttribute("medi1", medi);
+		
+		model.addAttribute("medi", new medi());
+		
+		return "manage";
+	}
+	@RequestMapping("suc_medi")
+	public String suc_medi(Model model, medi medi) {
+		
+		logger.info("home/suc_medi");
+		
+		
+		return "suc_medi";
 	}
 	
 	@RequestMapping(value = "/error", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")

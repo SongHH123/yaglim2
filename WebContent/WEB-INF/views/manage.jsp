@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix ="sf" uri ="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <% request.setCharacterEncoding("UTF-8"); %>
 <head>
-<title>홈</title>
+<title>상비약 관리</title>
 <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/resources/CSS/bar.css">
 <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/resources/CSS/table.css">
 </head>
@@ -23,10 +23,6 @@
         </c:if></li>
         <li><a href="${pageContext.request.contextPath}/" class="nav-link">홈</a></li>
         <li><a href="${pageContext.request.contextPath}/postform" class="nav-link">게시글 작성</a></li>
-        
-        <li><a href="${pageContext.request.contextPath}/manage?user_id=${pageContext.request.userPrincipal.name}" class="nav-link">상비약 관리</a></li>
-		
-
         <li><c:if test="${pageContext.request.userPrincipal.name == null}">
         	<a href="${pageContext.request.contextPath}/login" class="nav-link">로그인</a>
         </c:if></li>
@@ -35,48 +31,38 @@
 		</c:if></li>
 		<form id="logout" action="<c:url value="/logout" />"method="post">
 			<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
-		</form>
+		</form>  
       </ul>
   </nav>
   <img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
-  <div id="gap">
-  		  <table class="table" style="text-align:center">
-  			<thead class="table-light">
-  				<tr>
-  					<th>번호</th>
-  					<th>게시판</th>
-  					<th>제목</th>
-  					<th>작성자</th>
-  					<th>작성시간</th>
-  				</tr>
-			</thead>
-	
-			<tbody>
-				<c:forEach var="post" items="${post}">
-				  <tr>
-  					<th><c:out value="${post['post_id']}"></c:out></th>
-  					<td><c:if test="${post['board_title'] eq 1}">
-  						<c:out value="상비약 나눔"></c:out></c:if>
-  						<c:if test="${post['board_title'] eq 2}">
-  						<c:out value="질문"></c:out></c:if>
-  						<c:if test="${post['board_title'] eq 3}">
-  						<c:out value="정보나눔"></c:out></c:if>
-  						<c:if test="${post['board_title'] eq 4}">
-  						<c:out value="기타"></c:out></c:if>
-  					</td>
-  					
-  					<td><a href="viewPost?post_id=${post['post_id']}">
-  					<c:out value="${post['post_title']}"></c:out></a></td>
-  					
-  					<td><c:out value="${post['user_id']}"></c:out></td>
-  					<td><c:out value="${fn:substring(post['post_regdate'], 0, 16)}"></c:out></td>
-  					</tr>
-  				</c:forEach>  			
-  			</tbody>	
-			</table>
-  </div>
-	
-	<a href="${pageContext.request.contextPath}/viewBoard" class="nav-link">각자 게시판으로 이동</a>
+
+
+보유 상비약
+<c:forEach var="medi" items="${medi1}">
+	<c:out value="${medi['medi_name']}"></c:out>
+	<c:out value="${medi['medi_open']}"></c:out>
+	<c:out value="${medi['medi_until']}"></c:out>
+
+</c:forEach>
+<hr/>
+추가<br/>
+
+
+
+<c:out value="${pageContext.request.userPrincipal.name}" />
+
+
+<sf:form method="post" accept-charset="UTF-8"
+		action="${pageContext.request.contextPath}/suc_medi"
+		modelAttribute="post">
+	약 이름 <input type="text" name="medi_name"/><br/>
+	개봉일 <input type="date" name="medi_open"/><br/>
+	유효기한 <input type="date" name="medi_until"/><br/>
+	<input type="hidden" name="user_id" value="id"/>
+	<input type="submit" style="margin-left:320px;" value="추가"  />
+</sf:form>
+
+
 
 </body>
 </html>

@@ -90,7 +90,7 @@
 				action="${pageContext.request.contextPath}/suc_comment">
 				<p style="display:none;"><input type="text" name="user_id" value="${pageContext.request.userPrincipal.name}"></p>
 				<p style="display:none;"><input type="text" name="post_id" value="${post.post_id}"></p>
-				<input type="text" name="comment_content">
+				<input type="text" name="comment_content" required>
 					<button id="new" class="btn btn-primary btn-sm" type="submit">댓글 달기</button>
 				</sf:form>
 			</td>

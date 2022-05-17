@@ -67,20 +67,12 @@
 		</div>
 
 		<div>
-			<input type="text" name="post_title" style="width:101.5%" placeholder="제목을 작성해주세요."/> <br/>
+			제목 <input type="text" name="post_title" style="width:101.5%" placeholder="제목을 작성해주세요." required/> <br/>
 		</div>
 		<div>
-			<textarea name="post_content" rows="10" cols="50" placeholder="내용을 작성하세요"></textarea><br/>
+			내용 <textarea name="post_content" rows="10" cols="50" placeholder="내용을 작성하세요" required></textarea><br/>
 		</div>
-
-		<!--div>
-			<label>첨부파일 <input type="file" id="formFile">>
-			</label>
-		</div-->
-
-		<!--  % Timestamp.valueOf(LocalDateTime.now());%-->
-
-		<input type="submit" value="전송"  />
+		<input type="submit" style="margin-left:360px;" class="btn btn-success" value="전송"  />
 
 	</sf:form>
 

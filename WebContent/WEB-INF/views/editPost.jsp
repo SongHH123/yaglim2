@@ -64,8 +64,6 @@
 		modelAttribute="post">
 		<p style="display:none;">
 		<input type="text" name="user_id" value="${pageContext.request.userPrincipal.name}"></p>
-		게시글 번호 <input type="text" name="post_id" value="${id}" style="width:15%" readonly>
-		<div>
 			<label>게시판 종류</label> <select name="board_title">
 				<option value="1"
 					<c:if test="${b_title eq 1}"> selected </c:if>> 상비약 나눔 게시판</option>
@@ -76,13 +74,13 @@
 		</div>
 
 		<div>
-			제목 <input type="text" name="post_title" style="width:101.5%" value="${title}"/><br/>
+			제목 <input type="text" name="post_title" style="width:101.5%" value="${title}" required/><br/>
 		</div>
 		<div>
-			내용 <textarea name="post_content" rows="10" cols="50">${content}</textarea><br/>
+			내용 <textarea name="post_content" rows="10" cols="50" required>${content}</textarea><br/>
 		</div>
 
-		<input type="submit" value="수정 완료"  />
+		<input type="submit" style="margin-left:320px;" class="btn btn-success" value="수정 완료"  />
 
 	</sf:form>
 

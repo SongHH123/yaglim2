@@ -22,8 +22,10 @@
 		<intercept-url access="permitAll" pattern="/viewPost" />
 		<intercept-url access="permitAll" pattern="/suc_post" />
 		<intercept-url access="isAuthenticated()" pattern="/postform" />
+		<intercept-url access="isAuthenticated()" pattern="/manage" />
 		<intercept-url access="isAuthenticated()" pattern="/suc_comment" />
 		<intercept-url access="isAuthenticated()" pattern="/del_comment" />
+		<intercept-url access="isAuthenticated()" pattern="/suc_medi" />
 		<intercept-url access="permitAll" pattern="/editPost" />
 		<intercept-url access="permitAll" pattern="/suc_edit" />
 		<intercept-url access="permitAll" pattern="/suc_del" />

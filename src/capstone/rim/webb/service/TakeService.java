@@ -11,6 +11,7 @@ import capstone.rim.webb.model.Board;
 import capstone.rim.webb.model.Comment;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
+import capstone.rim.webb.model.medi;
 
 @Service
 public class TakeService {
@@ -59,5 +60,8 @@ public class TakeService {
 	}
 	public void deletePost(int post_id) {
 		takeDao.deletePost(post_id);
+	}
+	public List<medi> getMedi(String user_id){
+		return  takeDao.getMedi(user_id);
 	}
 }

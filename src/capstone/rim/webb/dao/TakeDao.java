@@ -17,6 +17,7 @@ import capstone.rim.webb.model.Board;
 import capstone.rim.webb.model.Comment;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
+import capstone.rim.webb.model.medi;
 import capstone.rim.webb.model.Authorities;
 
 @Repository("takeDao")
@@ -186,5 +187,27 @@ public class TakeDao {
 		return (jdbcTemplate.update(sqlStatement,
 				new Object[] { user_id1, authority}) == 1);
 	}
-
+	
+	
+	
+	//medi
+		public int getRowMedi() {
+			String sqlStatement ="select count(*) from medi";
+			return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
+		}
+		public List <medi> getMedi(String user_id){
+			String sqlStatement = "select * from medi where not IsDeleted=1 and user_id=" + "user_id";
+			return jdbcTemplate.query(sqlStatement, new RowMapper <medi>() {
+				@Override
+				public medi mapRow(ResultSet rs, int rowNum) throws SQLException{
+					medi medi = new medi();
+					medi.setMedi_name(rs.getString("medi_name"));
+					medi.setMedi_open(rs.getDate("medi_open"));
+					medi.setMedi_until(rs.getDate("medi_until"));
+					medi.setUser_id(rs.getString("user_id"));
+					return medi;
+				}
+			});
+		}
+	
 }

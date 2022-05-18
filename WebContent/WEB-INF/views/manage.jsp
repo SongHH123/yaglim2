@@ -37,17 +37,37 @@
   <img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
 
 
-보유 상비약
-<c:forEach var="medi" items="${medi1}">
-	<c:out value="${medi['medi_name']}"></c:out>
-	<c:out value="${medi['medi_open']}"></c:out>
-	<c:out value="${medi['medi_until']}"></c:out>
+<label>보유 상비약
+<table>
+	<thead>
+		<th>종류</th>
+		<th>약 이름</th>
+		<th>개봉</th>
+		<th>유효기간</th>
+	</thead>
+	<tbody>
+	<c:forEach var="medi1" items="${medi1}">
+	<c:if test="${pageContext.request.userPrincipal.name eq medi1['user_id'] }">
+	
+	<tr>
+		<td><c:out value="${medi1['medi_type']}"></c:out></td>
+		<td><c:out value="${medi1['medi_name']}"></c:out></td>
+		<td><c:out value="${medi1['medi_open']}"></c:out></td>
+		<td><c:out value="${medi1['medi_until']}"></c:out></td>
+	</c:if>
+	</c:forEach>
+	</tr>
+	
+	</tbody>
+</table>
+</label>
+	
 
-</c:forEach>
+
+
+
+
 <hr/>
-추가<br/>
-
-
 
 <c:out value="${pageContext.request.userPrincipal.name}" />
 
@@ -55,10 +75,11 @@
 <sf:form method="post" accept-charset="UTF-8"
 		action="${pageContext.request.contextPath}/suc_medi"
 		modelAttribute="post">
+	약 종류 <input type="text" name="medi_type"/><br/>
 	약 이름 <input type="text" name="medi_name"/><br/>
 	개봉일 <input type="date" name="medi_open"/><br/>
 	유효기한 <input type="date" name="medi_until"/><br/>
-	<input type="hidden" name="user_id" value="id"/>
+	<input type="hidden" name="user_id" value="${pageContext.request.userPrincipal.name}"/>
 	<input type="submit" style="margin-left:320px;" value="추가"  />
 </sf:form>
 

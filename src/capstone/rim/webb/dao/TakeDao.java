@@ -50,7 +50,7 @@ public class TakeDao {
 		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 	}
 	public List <Post> getPost(){
-		String sqlStatement = "select * from post where not IsDeleted=1"; //where board_id 추가
+		String sqlStatement = "select * from post where not IsDeleted=1 ORDER BY post_regdate DESC";
 		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
 			@Override
 			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{
@@ -195,16 +195,18 @@ public class TakeDao {
 			String sqlStatement ="select count(*) from medi";
 			return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 		}
-		public List <medi> getMedi(String user_id){
-			String sqlStatement = "select * from medi where not IsDeleted=1 and user_id=" + "user_id";
+		public List <medi> getMedi(){
+			String sqlStatement = "select * from medi where not IsDeleted=1";
 			return jdbcTemplate.query(sqlStatement, new RowMapper <medi>() {
 				@Override
 				public medi mapRow(ResultSet rs, int rowNum) throws SQLException{
 					medi medi = new medi();
 					medi.setMedi_name(rs.getString("medi_name"));
+					medi.setMedi_type(rs.getString("medi_type"));
 					medi.setMedi_open(rs.getDate("medi_open"));
 					medi.setMedi_until(rs.getDate("medi_until"));
 					medi.setUser_id(rs.getString("user_id"));
+					medi.setIsDeleted(rs.getInt("IsDeleted"));
 					return medi;
 				}
 			});

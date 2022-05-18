@@ -159,6 +159,7 @@ public class OfferController {
 		
 		logger.info("home/suc_edit");
 		
+		System.out.println(post);
 		takeService.updatePost(post);
 		
 		return "suc_edit";
@@ -187,7 +188,8 @@ public class OfferController {
 	public String manage(Model model, @RequestParam("user_id") String user_id) {
 		
 		logger.info("home/magage");
-		List<medi> medi = takeService.getMedi(user_id);
+		
+		List<medi> medi = takeService.getMedi();
 		model.addAttribute("medi1", medi);
 		
 		model.addAttribute("medi", new medi());

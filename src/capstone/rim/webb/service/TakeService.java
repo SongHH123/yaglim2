@@ -61,7 +61,7 @@ public class TakeService {
 	public void deletePost(int post_id) {
 		takeDao.deletePost(post_id);
 	}
-	public List<medi> getMedi(String user_id){
-		return  takeDao.getMedi(user_id);
+	public List<medi> getMedi(){
+		return  takeDao.getMedi();
 	}
 }

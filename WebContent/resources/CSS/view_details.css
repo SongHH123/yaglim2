@@ -12,16 +12,12 @@ table{
 	text-align:center;
 	background-color:white;
 	width:90%;
-	margin : 50px 50vh 150px 5vh;
+	margin : 30px 50vh 0px 5vh;
 }
 
 td, tr{
     height: 40px;
     padding:0px 3% 0px 3%;
-}
-
-tr{
-	border:1px solid black;
 }
 
 div {

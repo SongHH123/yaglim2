@@ -52,9 +52,9 @@
 		action="${pageContext.request.contextPath}/suc_signup" id="PF"
 		modelAttribute="user">
 		<table>
-			<tr><td>아이디</td><td>:</td><td><input type="text" name="user_id"></td></tr>			
-			<tr><td>핸드폰 번호 </td><td>:</td><td><input type="text" name="user_phone"></td></tr>
-			<tr><td>비밀번호</td><td>:</td><td><input type="password" name="user_pw"></td></tr>		
+			<tr><td>아이디</td><td>:</td><td><input type="text" name="user_id" required></td></tr>			
+			<tr><td>핸드폰 번호 </td><td>:</td><td><input type="text" name="user_phone" required></td></tr>
+			<tr><td>비밀번호</td><td>:</td><td><input type="password" name="user_pw" required></td></tr>		
 		</table>
 
 		<button id="click" class="btn btn-lg btn-primary btn-block" type="submit">회원 가입</button>

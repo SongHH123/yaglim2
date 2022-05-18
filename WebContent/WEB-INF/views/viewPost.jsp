@@ -48,57 +48,67 @@
 		</ul>
 	</nav>
 	<img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
-	<table>
+	<table >
 		<c:forEach var="post" items="${post}">
 			<tr>
-				<td style="width:20%"><c:out value="${post.post_id}" />번 게시물</td>
-				<td style="width:60%"><c:if test="${post['board_title'] eq 1}">
-  						<c:out value="상비약 나눔 게시판"></c:out></c:if>
-  						<c:if test="${post['board_title'] eq 2}">
-  						<c:out value="질문 게시판"></c:out></c:if>
-  						<c:if test="${post['board_title'] eq 3}">
-  						<c:out value="정보나눔 게시판"></c:out></c:if>
-  						<c:if test="${post['board_title'] eq 4}">
-  						<c:out value="기타 게시판"></c:out></c:if></td>
-				<td style="width:20%"><c:out value="${post.user_id}" /></td>
+				<td colspan="3" style="text-align:left;">
+				<h2 style="margin-bottom: 40px;"><c:if test="${post['board_title'] eq 1}">
+						<c:out value="상비약 나눔 게시판"></c:out>
+					</c:if> <c:if test="${post['board_title'] eq 2}">
+						<c:out value="질문 게시판"></c:out>
+					</c:if> <c:if test="${post['board_title'] eq 3}">
+						<c:out value="정보나눔 게시판"></c:out>
+					</c:if> <c:if test="${post['board_title'] eq 4}">
+						<c:out value="기타 게시판"></c:out>
+					</c:if></h2> 
+					<h4 style="margin-bottom: 15px; margin-left:20px"><c:out value="${post.post_id}" />번 게시물</h4> </td>
 			</tr>
-
-			<tr>
-				<td colspan="2"><c:out value="${post.post_title}" /></td>
+			<tr style="border-bottom: 1px solid #444444; background-color: #f3f3f3">
+				<td style="width:60%">제목</td>
+				<td style="width:20%">글쓴이</td>
+				<td style="width:20%">작성 시각</td>
+			</tr>
+			<tr style="border-bottom: 1px solid #bfbfbf;">
+				<td><c:out value="${post.post_title}" /></td>
+				<td><c:out value="${post.user_id}" /></td>
 				<td><c:out value="${fn:substring(post.post_regdate, 0, 16)}"></c:out></td>
 			</tr>
 
-			<tr>
-				<td style="height:300px" colspan="3"><c:out value="${post.post_content}" /></td>
+			<tr style="border-bottom: 1px solid #bfbfbf;">
+				<td style="height: 300px" colspan="3"><c:out
+						value="${post.post_content}" /></td>
 			</tr>
 
 			<c:set var="user" value="${pageContext.request.userPrincipal.name}" />
 			<c:if test="${post.user_id eq user}">
-				<tr>
-					<td colspan="3" style="text-align:right;">
-					<button type="button" class="btn btn-primary btn-sm me-md-2"
+				<tr style="border-bottom: 1px solid #444444; background-color: #f3f3f3">
+					<td colspan="3" style="text-align: right;">
+						<button type="button" class="btn btn-success btn-sm me-md-2"
 							onClick="location.href='editPost?post_id=${post.post_id}'">수정하기</button>
 						<button type="button" class="btn btn-danger btn-sm"
-                     onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button>
-                     </td>
+							onClick="location.href='suc_del?post_id=${post.post_id}'">삭제하기</button>
+					</td>
 				</tr>
 			</c:if>
 		</c:forEach>
+		</table>
+		<table style="border-bottom: 1px solid #bfbfbf; margin-top:0px">
 		<c:forEach var="post" items="${post}">
 		<tr>
 			<td colspan="3">
-				<sf:form method="post" modelAttribute="new_comment"
+				<sf:form style="margin:10px;" method="post" modelAttribute="new_comment"
 				action="${pageContext.request.contextPath}/suc_comment">
 				<p style="display:none;"><input type="text" name="user_id" value="${pageContext.request.userPrincipal.name}"></p>
 				<p style="display:none;"><input type="text" name="post_id" value="${post.post_id}"></p>
-				<input type="text" name="comment_content" required>
-					<button id="new" class="btn btn-primary btn-sm" type="submit">댓글 달기</button>
+				<input style="width:75%" type="text" name="comment_content" value="" required>
+					<button id="new" class="btn btn-success btn-sm" type="submit" style="margin-left:5px;">
+					댓글 달기</button>
 				</sf:form>
 			</td>
 		</tr>
 		</c:forEach>
 		<c:forEach var="comment" items="${comment}">
-				 <tr>
+				 <tr style="border-top: 1px solid #bfbfbf;">
   					<td><c:out value="${comment['user_id']}"></c:out></td>
   					<td style="text-align:right;"><c:out value="${fn:substring(comment['comment_regdate'], 0, 16)}"></c:out></td>
 					<c:if test="${comment.user_id eq user}">
@@ -106,7 +116,7 @@
   					onClick="location.href='del_comment?comment_id=${comment.comment_id}'">삭제</button></td>
   					</c:if>
   				</tr>
-  				<tr>
+  				<tr style="border-top: 1px solid #bfbfbf;">
   					<td colspan="3"><c:out value="${comment['comment_content']}"></c:out></td>
   				</tr>
   		</c:forEach>  			

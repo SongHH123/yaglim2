@@ -109,11 +109,13 @@
 
     <input type="checkbox" 
     	<c:forEach var="medi1" items="${medi1}">
-    		<c:if test="${ medilist['medi_name'] eq medi1['medi_type'] }">checked</c:if></c:forEach> onClick="return false;" >
+    		<c:if test="${ medilist['medi_name'] eq medi1['medi_type']
+    			&& pageContext.request.userPrincipal.name eq medi1['user_id'] }">checked</c:if></c:forEach> onClick="return false;" >
     		
     <c:out value="${medilist['medi_name']}"></c:out><br/>
     
 </c:forEach>
+
 
 </div>
 

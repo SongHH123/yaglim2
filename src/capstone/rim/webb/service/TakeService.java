@@ -12,6 +12,7 @@ import capstone.rim.webb.model.Comment;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
 import capstone.rim.webb.model.medi;
+import capstone.rim.webb.model.medilist;
 
 @Service
 public class TakeService {
@@ -63,5 +64,8 @@ public class TakeService {
 	}
 	public List<medi> getMedi(){
 		return  takeDao.getMedi();
+	}
+	public List<medilist> getMediList(){
+		return  takeDao.getMediList();
 	}
 }

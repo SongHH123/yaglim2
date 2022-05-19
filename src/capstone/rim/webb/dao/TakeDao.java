@@ -18,6 +18,7 @@ import capstone.rim.webb.model.Comment;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
 import capstone.rim.webb.model.medi;
+import capstone.rim.webb.model.medilist;
 import capstone.rim.webb.model.Authorities;
 
 @Repository("takeDao")
@@ -211,5 +212,25 @@ public class TakeDao {
 				}
 			});
 		}
+		
+	//medi_list_상비약 목록
+		public int getRowMediList() {
+			String sqlStatement ="select count(*) from medi";
+			return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
+		}
+		public List <medilist> getMediList(){
+			String sqlStatement = "select * from medilist";
+			return jdbcTemplate.query(sqlStatement, new RowMapper <medilist>() {
+				@Override
+				public medilist mapRow(ResultSet rs, int rowNum) throws SQLException{
+					medilist medilist = new medilist();
+					medilist.setMedilist_id(rs.getInt("medilist_id"));
+					medilist.setMedi_name(rs.getString("medi_name"));
+					return medilist;
+				}
+			});
+		}
+
+	
 	
 }

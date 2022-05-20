@@ -75,8 +75,14 @@
   			</tbody>	
 			</table>
   </div>
-	
-	<a href="${pageContext.request.contextPath}/viewBoard" class="nav-link">각자 게시판으로 이동</a>
+
+	<select style="float: right;" onchange="location.href=(this.value);">
+		<option value="${pageContext.request.contextPath}/">전체</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=1">상비약</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=2">질문</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=3">정보나눔</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=4">기타</option>
+	</select>
 
 </body>
 </html>

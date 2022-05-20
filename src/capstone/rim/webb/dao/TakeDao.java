@@ -67,6 +67,23 @@ public class TakeDao {
 			}
 		});
 	}
+	public List <Post> getPost_board(int board_title){
+		String sqlStatement = "select * from post where not IsDeleted=1 and board_title="+board_title+" ORDER BY post_regdate DESC";
+		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
+			@Override
+			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{
+				Post post = new Post();
+				post.setPost_id(rs.getInt("post_id"));
+				post.setPost_content(rs.getString("post_content"));
+				post.setPost_regdate(rs.getTimestamp("post_regdate"));
+				post.setIsDeleted(rs.getInt("IsDeleted"));
+				post.setPost_title(rs.getString("post_title"));
+				post.setUser_id(rs.getString("user_id"));
+				post.setBoard_title(rs.getInt("board_title"));
+				return post;
+			}
+		});
+	}
 	public boolean insertPost(Post post) {
 		int post_id= (getRowPost() + 1);
 		String post_content= post.getPost_content();

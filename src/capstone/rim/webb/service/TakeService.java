@@ -48,7 +48,9 @@ public class TakeService {
 		// TODO Auto-generated method stub
 		return takeDao.getPost_one(post_id2);
 	}
-	
+	public List<Post> getPost_board(int board_title){
+		return takeDao.getPost_board(board_title);
+	}
 	public void insertUser(User user){
 		takeDao.insertUser(user);
 	}

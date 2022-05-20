@@ -105,12 +105,15 @@ public class OfferController {
 	}
 	
 	@RequestMapping("/viewBoard")
-	public String viewBoard(Model model) {
-		
-		logger.info("home/viewBoard-post");
-		
-		List<Post> post = takeService.getPost();
+	public String viewBoard(Model model, @RequestParam("board") int board_title) {
+
+		List<Post> post = takeService.getPost_board(board_title);
 		model.addAttribute("post", post);
+		
+		model.addAttribute("board", board_title);
+		
+		logger.info("home/viewBoard");
+		
 
 		return "viewBoard";
 	}

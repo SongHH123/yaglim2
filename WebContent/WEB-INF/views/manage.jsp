@@ -80,7 +80,7 @@
 	<td><input type="text" name="medi_name"/></td>
 	<td><input type="date" name="medi_open"/></td>
 	<td><input type="date" name="medi_until"/>
-	<input type="hidden" name="user_id" value="&uml;${pageContext.request.userPrincipal.name}&uml;"/>
+	<input type="hidden" name="user_id" value="${pageContext.request.userPrincipal.name}"/>
 	<input type="submit" value="추가"  /></td>
 		</sf:form>
 	</tr>
@@ -88,6 +88,7 @@
 	
 	</tbody>
 </table>
+
 
 <p>
 ‘의료기관 내 개봉 의약품 관리지침’에 따르면 경구용 약의 경우 
@@ -120,7 +121,7 @@
 </div>
 
 
-
+<c:out value="${pageContext.request.userPrincipal.name}"/>
 
 
 

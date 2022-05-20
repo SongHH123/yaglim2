@@ -79,7 +79,7 @@
 		<div>
 			내용 <textarea name="post_content" rows="10" cols="50" required>${content}</textarea><br/>
 		</div>
-
+		<input type="hidden" name="post_id" value="${id}"/>
 		<input type="submit" style="margin-left:320px;" class="btn btn-success" value="수정 완료"  />
 
 	</sf:form>

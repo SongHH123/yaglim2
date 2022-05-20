@@ -11,10 +11,10 @@ body{
 }
 
 #PF{
-	margin : 150px 50vh 150px 30%;
+	margin : 5% 50vh 150px 30%;
 	display: inline-block;
 	background-color: white;	
-    padding : 8% 8% 8% 8%;
+    padding : 8% 8% 5% 8%;
 }
 
 #click{

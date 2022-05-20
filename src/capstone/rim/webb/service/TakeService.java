@@ -12,6 +12,7 @@ import capstone.rim.webb.model.Comment;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
 import capstone.rim.webb.model.medi;
+import capstone.rim.webb.model.medilist;
 
 @Service
 public class TakeService {
@@ -47,7 +48,9 @@ public class TakeService {
 		// TODO Auto-generated method stub
 		return takeDao.getPost_one(post_id2);
 	}
-	
+	public List<Post> getPost_board(int board_title){
+		return takeDao.getPost_board(board_title);
+	}
 	public void insertUser(User user){
 		takeDao.insertUser(user);
 	}
@@ -61,7 +64,10 @@ public class TakeService {
 	public void deletePost(int post_id) {
 		takeDao.deletePost(post_id);
 	}
-	public List<medi> getMedi(String user_id){
-		return  takeDao.getMedi(user_id);
+	public List<medi> getMedi(){
+		return  takeDao.getMedi();
+	}
+	public List<medilist> getMediList(){
+		return  takeDao.getMediList();
 	}
 }

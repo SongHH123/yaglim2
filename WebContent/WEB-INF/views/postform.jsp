@@ -37,6 +37,7 @@
 				class="nav-link">홈</a></li>
 			<li><a href="${pageContext.request.contextPath}/postform"
 				class="nav-link">게시글 작성</a></li>
+			 <li><a href="${pageContext.request.contextPath}/manage?user_id=${pageContext.request.userPrincipal.name}" class="nav-link">상비약 관리</a></li>
 			<li><c:if
 					test="${pageContext.request.userPrincipal.name == null}">
 					<a href="${pageContext.request.contextPath}/login" class="nav-link">로그인</a>

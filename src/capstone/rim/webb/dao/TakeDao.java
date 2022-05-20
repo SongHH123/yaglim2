@@ -18,6 +18,7 @@ import capstone.rim.webb.model.Comment;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
 import capstone.rim.webb.model.medi;
+import capstone.rim.webb.model.medilist;
 import capstone.rim.webb.model.Authorities;
 
 @Repository("takeDao")
@@ -50,7 +51,24 @@ public class TakeDao {
 		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 	}
 	public List <Post> getPost(){
-		String sqlStatement = "select * from post where not IsDeleted=1"; //where board_id 추가
+		String sqlStatement = "select * from post where not IsDeleted=1 ORDER BY post_regdate DESC";
+		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
+			@Override
+			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{
+				Post post = new Post();
+				post.setPost_id(rs.getInt("post_id"));
+				post.setPost_content(rs.getString("post_content"));
+				post.setPost_regdate(rs.getTimestamp("post_regdate"));
+				post.setIsDeleted(rs.getInt("IsDeleted"));
+				post.setPost_title(rs.getString("post_title"));
+				post.setUser_id(rs.getString("user_id"));
+				post.setBoard_title(rs.getInt("board_title"));
+				return post;
+			}
+		});
+	}
+	public List <Post> getPost_board(int board_title){
+		String sqlStatement = "select * from post where not IsDeleted=1 and board_title="+board_title+" ORDER BY post_regdate DESC";
 		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
 			@Override
 			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{
@@ -195,19 +213,41 @@ public class TakeDao {
 			String sqlStatement ="select count(*) from medi";
 			return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 		}
-		public List <medi> getMedi(String user_id){
-			String sqlStatement = "select * from medi where not IsDeleted=1 and user_id=" + "user_id";
+		public List <medi> getMedi(){
+			String sqlStatement = "select * from medi where not IsDeleted=1";
 			return jdbcTemplate.query(sqlStatement, new RowMapper <medi>() {
 				@Override
 				public medi mapRow(ResultSet rs, int rowNum) throws SQLException{
 					medi medi = new medi();
 					medi.setMedi_name(rs.getString("medi_name"));
+					medi.setMedi_type(rs.getString("medi_type"));
 					medi.setMedi_open(rs.getDate("medi_open"));
 					medi.setMedi_until(rs.getDate("medi_until"));
 					medi.setUser_id(rs.getString("user_id"));
+					medi.setIsDeleted(rs.getInt("IsDeleted"));
 					return medi;
 				}
 			});
 		}
+		
+	//medi_list_상비약 목록
+		public int getRowMediList() {
+			String sqlStatement ="select count(*) from medi";
+			return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
+		}
+		public List <medilist> getMediList(){
+			String sqlStatement = "select * from medilist";
+			return jdbcTemplate.query(sqlStatement, new RowMapper <medilist>() {
+				@Override
+				public medilist mapRow(ResultSet rs, int rowNum) throws SQLException{
+					medilist medilist = new medilist();
+					medilist.setMedilist_id(rs.getInt("medilist_id"));
+					medilist.setMedi_name(rs.getString("medi_name"));
+					return medilist;
+				}
+			});
+		}
+
+	
 	
 }

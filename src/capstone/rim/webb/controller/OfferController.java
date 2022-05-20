@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
 import capstone.rim.webb.model.medi;
+import capstone.rim.webb.model.medilist;
 import capstone.rim.webb.service.TakeService;
 import capstone.rim.webb.model.Authorities;
 import capstone.rim.webb.model.Board;
@@ -104,12 +105,15 @@ public class OfferController {
 	}
 	
 	@RequestMapping("/viewBoard")
-	public String viewBoard(Model model) {
-		
-		logger.info("home/viewBoard-post");
-		
-		List<Post> post = takeService.getPost();
+	public String viewBoard(Model model, @RequestParam("board") int board_title) {
+
+		List<Post> post = takeService.getPost_board(board_title);
 		model.addAttribute("post", post);
+		
+		model.addAttribute("board", board_title);
+		
+		logger.info("home/viewBoard");
+		
 
 		return "viewBoard";
 	}
@@ -159,6 +163,7 @@ public class OfferController {
 		
 		logger.info("home/suc_edit");
 		
+		System.out.println(post);
 		takeService.updatePost(post);
 		
 		return "suc_edit";
@@ -187,10 +192,14 @@ public class OfferController {
 	public String manage(Model model, @RequestParam("user_id") String user_id) {
 		
 		logger.info("home/magage");
-		List<medi> medi = takeService.getMedi(user_id);
+		
+		List<medi> medi = takeService.getMedi();
 		model.addAttribute("medi1", medi);
 		
 		model.addAttribute("medi", new medi());
+		
+		List<medilist> medilist = takeService.getMediList();
+		model.addAttribute("medilist", medilist);
 		
 		return "manage";
 	}

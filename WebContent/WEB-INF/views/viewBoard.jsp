@@ -37,6 +37,21 @@
       </ul>
   </nav>
   <img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
+  
+  <p>
+	<select onchange="location.href=(this.value);">
+		<option value="${pageContext.request.contextPath}/">전체</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=1"
+			<c:if test="${ board eq 1 }">selected</c:if>>상비약</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=2"
+			<c:if test="${ board eq 2 }">selected</c:if>>질문</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=3"
+			<c:if test="${ board eq 3 }">selected</c:if>>정보나눔</option>
+		<option value="${pageContext.request.contextPath}/viewBoard?board=4"
+			<c:if test="${ board eq 4 }">selected</c:if>>기타</option>
+	</select>
+</p>
+  
   <div id="gap">
   		  <table class="table" style="text-align:center">
   			<thead class="table-light">
@@ -50,7 +65,9 @@
 			</thead>
 	
 			<tbody>
-				<c:forEach var="post" items="${post}">
+	
+<c:if test="${table == null}">
+				<c:forEach var="post" items="${post}">				
 				  <tr>
   					<th><c:out value="${post['post_id']}"></c:out></th>
   					<td><c:if test="${post['board_title'] eq 1}">
@@ -69,22 +86,52 @@
   					<td><c:out value="${post['user_id']}"></c:out></td>
   					<td><c:out value="${fn:substring(post['post_regdate'], 0, 16)}"></c:out></td>
   					</tr>
-  				</c:forEach>  			
+  					
+  				</c:forEach>
+</c:if>
+<c:if test="${table != null}">
+				<c:forEach var="post" items="${post1}">				
+				  <tr>
+  					<th><c:out value="${post['post_id']}"></c:out></th>
+  					<td><c:if test="${post['board_title'] eq 1}">
+  						<c:out value="상비약 나눔"></c:out></c:if>
+  						<c:if test="${post['board_title'] eq 2}">
+  						<c:out value="질문"></c:out></c:if>
+  						<c:if test="${post['board_title'] eq 3}">
+  						<c:out value="정보나눔"></c:out></c:if>
+  						<c:if test="${post['board_title'] eq 4}">
+  						<c:out value="기타"></c:out></c:if>
+  					</td>
+  					
+  					<td><a href="viewPost?post_id=${post['post_id']}">
+  					<c:out value="${post['post_title']}"></c:out></a></td>
+  					
+  					<td><c:out value="${post['user_id']}"></c:out></td>
+  					<td><c:out value="${fn:substring(post['post_regdate'], 0, 16)}"></c:out></td>
+  					</tr>
+  					
+  				</c:forEach>
+</c:if>
+  				
+  						
   			</tbody>	
 			</table>
   </div>
-<p style="text-align: right;">
-	<select onchange="location.href=(this.value);">
-		<option value="${pageContext.request.contextPath}/">전체</option>
-		<option value="${pageContext.request.contextPath}/viewBoard?board=1"
-			<c:if test="${ board eq 1 }">selected</c:if>>상비약</option>
-		<option value="${pageContext.request.contextPath}/viewBoard?board=2"
-			<c:if test="${ board eq 2 }">selected</c:if>>질문</option>
-		<option value="${pageContext.request.contextPath}/viewBoard?board=3"
-			<c:if test="${ board eq 3 }">selected</c:if>>정보나눔</option>
-		<option value="${pageContext.request.contextPath}/viewBoard?board=4"
-			<c:if test="${ board eq 4 }">selected</c:if>>기타</option>
-	</select>
-</p>
+  
+   <div>
+  	<form style="float: right;">
+  	
+  		<select name="table">
+  			<option value="post_title">제목</option>
+  			<option value="user_id">작성자</option>
+  		</select>
+  		
+		<input type="text" name="search">
+		<input type="submit" value="검색">
+	
+  	</form>
+  	
+  </div>
+
 </body>
 </html>

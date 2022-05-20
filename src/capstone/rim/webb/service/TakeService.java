@@ -51,6 +51,9 @@ public class TakeService {
 	public List<Post> getPost_board(int board_title){
 		return takeDao.getPost_board(board_title);
 	}
+	public List<Post> getPost_search(String table, String search){
+		return takeDao.getPost_search(table, search);
+	}
 	public void insertUser(User user){
 		takeDao.insertUser(user);
 	}

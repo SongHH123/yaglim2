@@ -1,0 +1,151 @@
+[33mcommit 0c827388b56041e26932cf38dffcbb26c55244db[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Fri May 20 11:11:53 2022 +0900
+
+    home_select
+
+[33mcommit ea4e792394b3d9a5b674837cded2c9b69d84352e[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Fri May 20 00:14:59 2022 +0900
+
+    fix_checkform
+
+[33mcommit 1441bf6087d401437777e84fbe57293520af852b[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Fri May 20 00:09:38 2022 +0900
+
+    0520_mediList
+
+[33mcommit 8de2aeb66cda9ebf61210b0f6c1cd4961bc6d1ca[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Thu May 19 02:43:00 2022 +0900
+
+    0519_change_view,edit,medi
+
+[33mcommit dcbc908b785d7ee6bb937c7789ea8e144ffdd4e9[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Thu May 19 01:06:08 2022 +0900
+
+    fix design
+
+[33mcommit 1178343f315a22329f48b2b41d2c53f4f49057b8[m
+Merge: 7b540f2 c281b74
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Thu May 19 01:02:40 2022 +0900
+
+    Merge branch 'master' of https://github.com/SongHH123/yaglim2
+
+[33mcommit 7b540f25d16925fba0d0d8afd38f20908c44e4dc[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Thu May 19 01:01:32 2022 +0900
+
+    fix design
+
+[33mcommit 934b72720fcc069e8edf45b5164f721d9aa8c813[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Wed May 18 23:29:29 2022 +0900
+
+    fix design
+
+[33mcommit c281b749d8791645dd622bf25d6f5a4aa6fa6ec3[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Wed May 18 06:53:22 2022 +0900
+
+    add_mediPage
+
+[33mcommit 317499812eabe82eab28ad444bab4e048842bb0e[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Tue May 17 23:46:36 2022 +0900
+
+    fix view time
+
+[33mcommit b2150ab3e7c8540df6f14e70dc8baa447f42cb6e[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Tue May 17 14:58:56 2022 +0900
+
+    fix design
+
+[33mcommit 6f285e77a5baa1ffb140c686f17c4913812ce7ef[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Tue May 17 00:27:18 2022 +0900
+
+    fix comment blancks
+
+[33mcommit 026a31f2229b39385f843adaf27fad860c13e5ec[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Mon May 16 20:51:09 2022 +0900
+
+    0516_fix_editForm
+
+[33mcommit d905ddbbe8a7cc4aa0b549087d2284e66adfae7c[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Sun May 15 02:18:59 2022 +0900
+
+    fix design
+
+[33mcommit a1a038250bac684f016aa419a946ee6bc46ff329[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Sun May 15 00:24:05 2022 +0900
+
+    add comment deleted
+
+[33mcommit c39fdd385e3030fa0a054cd26a974a256347cfaf[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Sat May 14 15:24:04 2022 +0900
+
+    add comment function
+
+[33mcommit 091cc3cbbaec51bf402e8755f19c53ceaa7c7715[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Sat May 14 02:20:25 2022 +0900
+
+    design button
+
+[33mcommit 9485cc57f73fc91a354e3f262619f27987a78957[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Sat May 14 02:02:59 2022 +0900
+
+    view comment
+
+[33mcommit d66d9105f95f65f95f1be6be2eb2120aad6ffa6b[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Fri May 13 22:45:57 2022 +0900
+
+    suc_del
+
+[33mcommit 6656f2d0ca8f88843c1ecd0814becfdc14b2fe78[m
+Author: heeewon <heewon0106@naver.com>
+Date:   Fri May 13 22:17:04 2022 +0900
+
+    0513
+
+[33mcommit c1d3b8b8cca42823ba3b271cb723b0b9a1336fb5[m
+Merge: 8d56c4c ff9b2a2
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Fri May 13 00:57:25 2022 +0900
+
+    add css file
+
+[33mcommit 8d56c4c2e04b65a10bea3b246f71dbfd81851720[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Fri May 13 00:52:22 2022 +0900
+
+    add css file
+
+[33mcommit ff9b2a24e4cce875a146aa5484cc7054737cbe4d[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Fri May 13 00:25:18 2022 +0900
+
+    fix_edit/add_del
+
+[33mcommit 09729572c38fa5dc841b0d0d4eaa9e70378bc750[m
+Author: dakkae <dky0830@gmail.com>
+Date:   Thu May 12 02:55:06 2022 +0900
+
+    0512_editPostpage
+
+[33mcommit e8324a5a74a06498725010aa62c4c47006d1677b[m
+Author: SongHyeHyeon <1971318@hansung.ac.kr>
+Date:   Wed May 11 21:20:09 2022 +0900
+
+    fix encoding err

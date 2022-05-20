@@ -105,7 +105,7 @@ public class OfferController {
 	}
 	
 	@RequestMapping("/viewBoard")
-	public String viewBoard(Model model, @RequestParam("board") int board_title) {
+	public String viewBoard(Model model, @RequestParam("board") int board_title, HttpServletRequest request) {
 
 		List<Post> post = takeService.getPost_board(board_title);
 		model.addAttribute("post", post);
@@ -114,6 +114,15 @@ public class OfferController {
 		
 		logger.info("home/viewBoard");
 		
+		//전송으로 검색 키워드 받아오기
+				String table = request.getParameter("table");
+				String search = request.getParameter("search");
+
+				if("search" != null) {
+					List<Post> post1 = takeService.getPost_search(table, search);
+					model.addAttribute("post1", post1);
+					model.addAttribute("table", table);
+				}
 
 		return "viewBoard";
 	}

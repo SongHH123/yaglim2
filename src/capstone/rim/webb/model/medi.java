@@ -1,5 +1,7 @@
 package capstone.rim.webb.model;
 
+
+
 import java.sql.Date;
 
 import lombok.Getter;

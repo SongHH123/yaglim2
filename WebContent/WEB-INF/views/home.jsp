@@ -40,7 +40,7 @@
   </nav>
   <img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
   
-  	<select onchange="location.href=(this.value);">
+  	<select style="margin-left:10px; margin-top:30px;"onchange="location.href=(this.value);">
 		<option value="${pageContext.request.contextPath}/">전체</option>
 		<option value="${pageContext.request.contextPath}/viewBoard?board=1">상비약</option>
 		<option value="${pageContext.request.contextPath}/viewBoard?board=2">질문</option>
@@ -113,17 +113,16 @@
   			</tbody>	
 			</table>
   </div>
-
- <div>
+ <div style="margin-right: 10px">
   	<form style="float: right;">
   	
-  		<select name="table">
+  		<select style="padding:6.3px;" name="table">
   			<option value="post_title">제목</option>
   			<option value="user_id">작성자</option>
   		</select>
   		
-		<input type="text" name="search">
-		<input type="submit" value="검색">
+		<input style="padding:4px" type="text" name="search">
+		<input class="btn btn-success" type="submit" value="검색">
 	
   	</form>
   	

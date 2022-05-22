@@ -1,4 +1,5 @@
 package capstone.rim.webb.dao;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -15,10 +16,10 @@ import org.springframework.stereotype.Repository;
 
 import capstone.rim.webb.model.Board;
 import capstone.rim.webb.model.Comment;
+import capstone.rim.webb.model.Medi;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
-import capstone.rim.webb.model.medi;
-import capstone.rim.webb.model.medilist;
+import capstone.rim.webb.model.Medilist;
 import capstone.rim.webb.model.Authorities;
 
 @Repository("takeDao")
@@ -230,12 +231,12 @@ public class TakeDao {
 			String sqlStatement ="select count(*) from medi";
 			return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 		}
-		public List <medi> getMedi(){
+		public List <Medi> getMedi(){
 			String sqlStatement = "select * from medi where not IsDeleted=1";
-			return jdbcTemplate.query(sqlStatement, new RowMapper <medi>() {
+			return jdbcTemplate.query(sqlStatement, new RowMapper <Medi>() {
 				@Override
-				public medi mapRow(ResultSet rs, int rowNum) throws SQLException{
-					medi medi = new medi();
+				public Medi mapRow(ResultSet rs, int rowNum) throws SQLException{
+					Medi medi = new Medi();
 					medi.setMedi_name(rs.getString("medi_name"));
 					medi.setMedi_type(rs.getString("medi_type"));
 					medi.setMedi_open(rs.getDate("medi_open"));
@@ -252,12 +253,12 @@ public class TakeDao {
 			String sqlStatement ="select count(*) from medi";
 			return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 		}
-		public List <medilist> getMediList(){
+		public List <Medilist> getMediList(){
 			String sqlStatement = "select * from medilist";
-			return jdbcTemplate.query(sqlStatement, new RowMapper <medilist>() {
+			return jdbcTemplate.query(sqlStatement, new RowMapper <Medilist>() {
 				@Override
-				public medilist mapRow(ResultSet rs, int rowNum) throws SQLException{
-					medilist medilist = new medilist();
+				public Medilist mapRow(ResultSet rs, int rowNum) throws SQLException{
+					Medilist medilist = new Medilist();
 					medilist.setMedilist_id(rs.getInt("medilist_id"));
 					medilist.setMedi_name(rs.getString("medi_name"));
 					return medilist;
@@ -265,6 +266,20 @@ public class TakeDao {
 			});
 		}
 
-	
+	//medi insert
+		public boolean insertMedi(Medi medi) {
+			int medi_id = (getRowMedi() +1);
+			String medi_name = medi.getMedi_name();
+			String user_id = medi.getUser_id();
+			Date medi_open = medi.getMedi_open();
+			Date medi_until = medi.getMedi_until();
+			String medi_type = medi.getMedi_type();
+			
+			int isDeleted = 0;
+			
+			String sqlStatement = "insert into medi (`medi_id`, `medi_name`, `medi_open`, `medi_until`, `isDeleted`, `medi_type`, `user_id`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			return (jdbcTemplate.update(sqlStatement,
+					new Object[] { medi_id, medi_name, medi_open, medi_until, isDeleted, medi_type, user_id }) == 1);
+		}
 	
 }

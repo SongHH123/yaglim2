@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
-import capstone.rim.webb.model.medi;
-import capstone.rim.webb.model.medilist;
+import capstone.rim.webb.model.Medilist;
 import capstone.rim.webb.service.TakeService;
 import capstone.rim.webb.model.Authorities;
 import capstone.rim.webb.model.Board;
 import capstone.rim.webb.model.Comment;
+import capstone.rim.webb.model.Medi;
 
 @Controller
 public class OfferController {
@@ -202,21 +202,21 @@ public class OfferController {
 		
 		logger.info("home/magage");
 		
-		List<medi> medi = takeService.getMedi();
+		List<Medi> medi = takeService.getMedi();
 		model.addAttribute("medi1", medi);
 		
-		model.addAttribute("medi", new medi());
+		model.addAttribute("medi", new Medi());
 		
-		List<medilist> medilist = takeService.getMediList();
+		List<Medilist> medilist = takeService.getMediList();
 		model.addAttribute("medilist", medilist);
 		
 		return "manage";
 	}
 	@RequestMapping("suc_medi")
-	public String suc_medi(Model model, medi medi) {
+	public String suc_medi(Model model, Medi medi, @RequestParam("user_id") String user_id) {
 		
 		logger.info("home/suc_medi");
-		
+		takeService.insertMedi(medi);	
 		
 		return "suc_medi";
 	}

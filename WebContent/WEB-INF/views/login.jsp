@@ -28,20 +28,28 @@
 <body style="margin: 0px;">
 	<nav id="menubar">
 		<ul style="margin: 0px;">
-	        <li><c:if test="${pageContext.request.userPrincipal.name == null}">
-	        	<a href="${pageContext.request.contextPath}/signup" class="nav-link">회원가입</a>
-	        </c:if></li>
-	        <li><a href="${pageContext.request.contextPath}/" class="nav-link">홈</a></li>
-	        <li><a href="${pageContext.request.contextPath}/postform" class="nav-link">게시글 작성</a></li>
-	        <li><c:if test="${pageContext.request.userPrincipal.name == null}">
-	        	<a href="${pageContext.request.contextPath}/login" class="nav-link">로그인</a>
-	        </c:if></li>
-	        <li><c:if test="${pageContext.request.userPrincipal.name != null}">
-	  			<a href="javascript:document.getElementById('logout').submit()">로그아웃</a>
-			</c:if></li>
-			<form id="logout" action="<c:url value="/logout" />"method="post">
-				<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
-			</form>  
+			<li><c:if
+					test="${pageContext.request.userPrincipal.name == null}">
+					<a href="${pageContext.request.contextPath}/signup"
+						class="nav-link">회원가입</a>
+				</c:if></li>
+			<li><a href="${pageContext.request.contextPath}/"
+				class="nav-link">홈</a></li>
+			<li><a href="${pageContext.request.contextPath}/postform"
+				class="nav-link">게시글 작성</a></li>
+			 <li><a href="${pageContext.request.contextPath}/manage?user_id=${pageContext.request.userPrincipal.name}" class="nav-link">상비약 관리</a></li>
+			<li><c:if
+					test="${pageContext.request.userPrincipal.name == null}">
+					<a href="${pageContext.request.contextPath}/login" class="nav-link">로그인</a>
+				</c:if></li>
+			<li><c:if
+					test="${pageContext.request.userPrincipal.name != null}">
+					<a href="javascript:document.getElementById('logout').submit()">로그아웃</a>
+				</c:if></li>
+			<form id="logout" action="<c:url value="/logout" />" method="post">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+			</form>
 		</ul>
 	</nav>
 	<form name="fm" method="post">

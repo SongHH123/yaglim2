@@ -44,7 +44,7 @@
 					<sf:form method="post" accept-charset="UTF-8"
 						action="${pageContext.request.contextPath}/suc_medi"
 						modelAttribute="post">
-						<td><select style="padding:2.5px;">
+						<td><select name=medi_type style="padding:2.5px;">
 								<option value="감기약">감기약</option>
 								<option value="소화제">소화제</option>
 								<option value="위장약">위장약</option>
@@ -59,11 +59,11 @@
 								<option value="파스">파스</option>
 								<option value="기타">기타(개인약품)</option>
 						</select></td>
-						<td><input type="text" name="medi_name" /></td>
-						<td><input type="date" name="medi_open" /></td>
-						<td><input type="date" name="medi_until" /> 
+						<td><input type="text" name="medi_name" required/></td>
+						<td><input type="date" name="medi_open" required/></td>
+						<td><input type="date" name="medi_until" required/> 
 						<input	type="hidden" name="user_id" value="${pageContext.request.userPrincipal.name}" /> </td>
-						<td><input class="btn btn-success" type="submit" value="추가" /></td>
+						<td><input class="btn btn-success" type="submit" value="추가" required/></td>
 					</sf:form>
 				</tr>
 				<thead>

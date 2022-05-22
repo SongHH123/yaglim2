@@ -24,8 +24,6 @@
 </head>
 
 <body>
-
-	<script type="text/javascript"></script>
 	<nav id="menubar">
 		<ul style="margin: 0px;">
 			<li><c:if

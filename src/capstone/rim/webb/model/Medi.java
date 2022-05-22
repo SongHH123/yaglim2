@@ -12,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 
-public class medi {
+public class Medi {
 	private String user_id;
 	private String medi_name;
 	private String medi_type;

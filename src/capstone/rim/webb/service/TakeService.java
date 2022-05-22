@@ -9,10 +9,10 @@ import capstone.rim.webb.dao.TakeDao;
 import capstone.rim.webb.model.Authorities;
 import capstone.rim.webb.model.Board;
 import capstone.rim.webb.model.Comment;
+import capstone.rim.webb.model.Medi;
 import capstone.rim.webb.model.Post;
 import capstone.rim.webb.model.User;
-import capstone.rim.webb.model.medi;
-import capstone.rim.webb.model.medilist;
+import capstone.rim.webb.model.Medilist;
 
 @Service
 public class TakeService {
@@ -67,10 +67,13 @@ public class TakeService {
 	public void deletePost(int post_id) {
 		takeDao.deletePost(post_id);
 	}
-	public List<medi> getMedi(){
+	public List<Medi> getMedi(){
 		return  takeDao.getMedi();
 	}
-	public List<medilist> getMediList(){
+	public List<Medilist> getMediList(){
 		return  takeDao.getMediList();
+	}
+	public void insertMedi(Medi medi) {
+		takeDao.insertMedi(medi);
 	}
 }

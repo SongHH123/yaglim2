@@ -213,7 +213,7 @@ public class OfferController {
 		return "manage";
 	}
 	@RequestMapping("suc_medi")
-	public String suc_medi(Model model, Medi medi, @RequestParam("user_id") String user_id) {
+	public String suc_medi(Model model, Medi medi) {
 		
 		logger.info("home/suc_medi");
 		takeService.insertMedi(medi);	

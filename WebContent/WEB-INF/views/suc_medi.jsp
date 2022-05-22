@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <script>
 alert('상비약이 추가되었습니다.');
-window.location.href = "${pageContext.request.contextPath}/manage";</script>
+window.location.href = "${pageContext.request.contextPath}/manage?user_id="+"${pageContext.request.userPrincipal.name}";</script>
 </head>
 <body>
 </body>

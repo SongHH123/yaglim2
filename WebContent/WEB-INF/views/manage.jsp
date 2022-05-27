@@ -82,6 +82,8 @@
 								<td><c:out value="${medi1['medi_name']}"></c:out></td>
 								<td><c:out value="${medi1['medi_open']}"></c:out></td>
 								<td><c:out value="${medi1['medi_until']}"></c:out></td>
+								<td style="text-align:left;"><button id="del_Medi" class="btn btn-lg btn-danger btn-sm"
+  								onClick="location.href='del_medi?medi_id=${medi1.medi_id}&&user_id=${pageContext.request.userPrincipal.name}'">삭제</button></td>
 							</tr>
 						</c:if>
 					</c:forEach>

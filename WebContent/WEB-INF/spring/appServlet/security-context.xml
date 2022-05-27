@@ -29,6 +29,7 @@
 		<intercept-url access="permitAll" pattern="/editPost" />
 		<intercept-url access="permitAll" pattern="/suc_edit" />
 		<intercept-url access="permitAll" pattern="/suc_del" />
+		<intercept-url access="permitAll" pattern="/del_medi" />
 		<intercept-url access="isAnonymous()" pattern="/signup" />
 		<intercept-url access="isAnonymous()" pattern="/suc_signup" />
 		<intercept-url access="isAnonymous()" pattern="/login" />

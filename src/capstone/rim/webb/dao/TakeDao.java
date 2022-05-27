@@ -243,6 +243,7 @@ public class TakeDao {
 					medi.setMedi_until(rs.getDate("medi_until"));
 					medi.setUser_id(rs.getString("user_id"));
 					medi.setIsDeleted(rs.getInt("IsDeleted"));
+					medi.setMedi_id(rs.getInt("medi_id"));
 					return medi;
 				}
 			});
@@ -280,6 +281,16 @@ public class TakeDao {
 			String sqlStatement = "insert into medi (`medi_id`, `medi_name`, `medi_open`, `medi_until`, `isDeleted`, `medi_type`, `user_id`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			return (jdbcTemplate.update(sqlStatement,
 					new Object[] { medi_id, medi_name, medi_open, medi_until, isDeleted, medi_type, user_id }) == 1);
+		}
+		
+		public boolean deleteMedi(String user_id, int medi_id) {
+			int del_medi_id = medi_id;
+			String del_user_id = user_id;
+			
+			int isDeleted = 1;
+			
+			String sqlStatement = "update Medi set isDeleted = ? where medi_id="  + del_medi_id +" and user_id='" + del_user_id+"'";
+			return (jdbcTemplate.update(sqlStatement, new Object[] { isDeleted }) == 1);
 		}
 	
 }

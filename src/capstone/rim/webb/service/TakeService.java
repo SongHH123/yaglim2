@@ -76,4 +76,7 @@ public class TakeService {
 	public void insertMedi(Medi medi) {
 		takeDao.insertMedi(medi);
 	}
+	public void deleteMedi(String user_id, int medi_id) {
+		takeDao.deleteMedi(user_id, medi_id);
+	}
 }

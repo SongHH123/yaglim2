@@ -229,4 +229,14 @@ public class OfferController {
 		return "error";
 	}
 	
+	@RequestMapping(value="del_medi")
+	public String del_medi(Model model, @RequestParam("medi_id") int medi_id,
+		@RequestParam("user_id") String user_id) {
+		
+		logger.info("home/suc_del_manage");
+		
+		takeService.deleteMedi(user_id, medi_id);
+		return "suc_del_manage";
+	}
+	
 }

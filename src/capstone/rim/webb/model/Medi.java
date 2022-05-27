@@ -17,7 +17,7 @@ public class Medi {
 	private String medi_name;
 	private String medi_type;
 	private int IsDeleted;
-	
+	private int medi_id;
 	private Date medi_open;
 	private Date medi_until;
 

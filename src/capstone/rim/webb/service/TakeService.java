@@ -54,6 +54,9 @@ public class TakeService {
 	public List<Post> getPost_search(String table, String search){
 		return takeDao.getPost_search(table, search);
 	}
+	public List<Post> getPost_search_inBoard(int board_title, String table, String search){
+		return takeDao.getPost_search_inBoard(board_title, table, search);
+	}
 	public void insertUser(User user){
 		takeDao.insertUser(user);
 	}
@@ -78,5 +81,15 @@ public class TakeService {
 	}
 	public void deleteMedi(String user_id, int medi_id) {
 		takeDao.deleteMedi(user_id, medi_id);
+	}
+
+	public List<Post> getPostLimit(String nowPage) {
+		return takeDao.getPostLimit(nowPage);
+	}
+	public int getRowPostWhere() {
+		return takeDao.getRowPostWhere();
+	}
+	public int getRowPostWhere_board(int board_title) {
+		return takeDao.getRowPostWhere_board(board_title);
 	}
 }

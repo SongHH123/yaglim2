@@ -57,7 +57,7 @@
 								<option value="밴드">밴드</option>
 								<option value="붕대">붕대</option>
 								<option value="파스">파스</option>
-								<option value="기타">기타(개인약품)</option>
+								<option value="기타(개인)">기타(개인약품)</option>
 						</select></td>
 						<td><input type="text" name="medi_name" required/></td>
 						<td><input type="date" name="medi_open" required/></td>

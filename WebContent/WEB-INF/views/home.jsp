@@ -76,7 +76,7 @@
 			<tbody>
 	
 <c:if test="${table == null}">
-				<c:forEach var="post" items="${post}">				
+				<c:forEach var="post" items="${post2}">				
 				  <tr>
   					<th><c:out value="${post['post_id']}"></c:out></th>
   					<td><c:if test="${post['board_title'] eq 1}">
@@ -98,6 +98,8 @@
   					
   				</c:forEach>
 </c:if>
+
+<!-- 검색어 있으면 다음이 출력 -->
 <c:if test="${table != null}">
 				<c:forEach var="post" items="${post1}">				
 				  <tr>
@@ -126,6 +128,30 @@
   			</tbody>	
 			</table>
   </div>
+<hr>
+
+<!-- 검색 후에는 페이징 기능이 없습니다. -->
+<c:choose>
+<c:when test="${table == null}">
+  	<form style="float: right;">
+  	
+  		<select style="padding:6.3px;" name="page">
+  			<option value="none">이동할 페이지</option>
+  			<option value="1" <c:if test="${page eq null}">selected</c:if> >1</option> <!-- 기본값 1로 줌 -->
+			<c:forEach var="index" begin="2" end="${Allpage}">
+				<option value="${index}">${index}</option>
+			</c:forEach>
+  			
+  		</select>
+
+		<input class="btn btn-success" type="submit" value="이동">
+  	</form>
+  	
+<c:if test="${page eq null}">현재 페이지 1</c:if>
+<c:if test="${page ne null}">현재 페이지 ${page }</c:if>
+</c:when>
+</c:choose>
+
 
 </body>
 </html>

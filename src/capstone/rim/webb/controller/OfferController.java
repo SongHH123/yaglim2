@@ -110,7 +110,7 @@ public class OfferController {
 		List<Post> post = takeService.getPost_board(board_title);
 		model.addAttribute("post", post);
 		
-		model.addAttribute("board", board_title);
+		model.addAttribute("boardd", board_title);
 		
 		logger.info("home/viewBoard");
 		//전송으로 검색 키워드 받아오기
@@ -118,11 +118,36 @@ public class OfferController {
 		String search = request.getParameter("search");
 
 		if("search" != null) {
-			List<Post> post1 = takeService.getPost_search(table, search);
+			//제목 또는 작성자 열에 넘긴다는 뜻
+			List<Post> post1 = takeService.getPost_search_inBoard(board_title, table, search);
 			model.addAttribute("post1", post1);
-			model.addAttribute("table", table);
+			model.addAttribute("table", table);//검색 따로 분류 출력하기 위함
 		}
 		
+		//현재 페이지 및 이동시킬 페이지
+		String page = request.getParameter("page");
+		model.addAttribute("page", page);
+
+		if( "null".equals(String.valueOf(page)) ) {
+			//초기 페이지
+			List<Post> post2 = takeService.getPostLimit("0");
+			model.addAttribute("post2", post2);
+		}
+		else {
+//		현재 페이지 -1 을 전달해야함
+			String miPage= Integer.toString( Integer.parseInt(page) -1 );
+			List<Post> post3 = takeService.getPostLimit(miPage);
+			model.addAttribute("post2", post3);
+			model.addAttribute("miPage", miPage);
+		}
+		
+		//전체 페이지 수
+				int Allpage= takeService.getRowPostWhere_board(board_title);
+				int Allpage2= Allpage/10;
+					if(Allpage%10 >0) {
+						Allpage2++;
+					}
+				model.addAttribute("Allpage", Allpage2);
 
 		return "viewBoard";
 	}

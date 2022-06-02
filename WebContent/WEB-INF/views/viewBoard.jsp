@@ -37,7 +37,7 @@
       </ul>
   </nav>
   <img src="${pageContext.request.contextPath}/resources/img/banner.jpg" alt="banner"/>
-  
+
   <p>
 	<select onchange="location.href=(this.value);">
 		<option value="${pageContext.request.contextPath}/">전체</option>
@@ -51,6 +51,18 @@
 			<c:if test="${ board eq 4 }">selected</c:if>>기타</option>
 	</select>
 </p>
+
+  	<form style="float: right;">
+  	
+  		<select style="padding:6.3px;" name="table">
+  			<option value="post_title">제목</option>
+  			<option value="user_id">작성자</option>
+  		</select>
+  		
+		<input style="padding:4px" type="text" name="search">
+		<input class="btn btn-success" type="submit" value="검색">
+	
+  	</form>
   
   <div id="gap">
   		  <table class="table" style="text-align:center">
@@ -65,7 +77,7 @@
 			</thead>
 	
 			<tbody>
-	
+
 <c:if test="${table == null}">
 				<c:forEach var="post" items="${post}">				
 				  <tr>
@@ -89,6 +101,8 @@
   					
   				</c:forEach>
 </c:if>
+
+<!-- 검색어 있으면 다음이 출력 -->
 <c:if test="${table != null}">
 				<c:forEach var="post" items="${post1}">				
 				  <tr>
@@ -118,20 +132,27 @@
 			</table>
   </div>
   
-   <div>
+
+
+  <hr>
   	<form style="float: right;">
   	
-  		<select name="table">
-  			<option value="post_title">제목</option>
-  			<option value="user_id">작성자</option>
+  		<select style="padding:6.3px;" name="page">
+  			<option value="none">이동할 페이지</option>
+  			<option value="1" <c:if test="${page eq null}">selected</c:if> >1</option> <!-- 기본값 1로 줌 -->
+			<c:forEach var="index" begin="2" end="${Allpage}">
+				<option value="${index}">${index}</option>
+			</c:forEach>
+  			
   		</select>
-  		
-		<input type="text" name="search">
-		<input type="submit" value="검색">
-	
-  	</form>
-  	
-  </div>
 
+		<input class="btn btn-success" type="submit" value="이동">
+  	</form>
+
+	<c:if test="${page eq null}">현재 페이지 1</c:if>
+	<c:if test="${page ne null}">현재 페이지 ${page }</c:if>
+
+
+	
 </body>
 </html>

@@ -37,8 +37,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) {
 
-		List<Post> post = offerService.getPost();
-		model.addAttribute("post", post);
+//		List<Post> post = offerService.getPost();
+//		model.addAttribute("post", post);
 		
 		//전송으로 검색 키워드 받아오기
 				String table = request.getParameter("table");
@@ -49,6 +49,35 @@ public class HomeController {
 					model.addAttribute("post1", post1);
 					model.addAttribute("table", table);
 				}
+
+				//현재 페이지 및 이동시킬 페이지
+				String page = request.getParameter("page");
+				model.addAttribute("page", page);
+
+		
+				
+				if( "null".equals(String.valueOf(page)) ) {
+					//초기 페이지
+					List<Post> post2 = offerService.getPostLimit("0");
+					model.addAttribute("post2", post2);
+				}
+				else {
+//				현재 페이지 -1 을 전달해야함
+			String miPage= Integer.toString( Integer.parseInt(page) -1 );
+			List<Post> post3 = offerService.getPostLimit(miPage);
+			model.addAttribute("post2", post3);
+			model.addAttribute("miPage", miPage);
+				}
+		
+		//전체 페이지 수
+		int Allpage= offerService.getRowPostWhere();
+		int Allpage2= Allpage/10;
+			if(Allpage%10 >0) {
+				Allpage2++;
+			}
+		model.addAttribute("Allpage", Allpage2);
+		
+		
 		return "home";
 	}
 	

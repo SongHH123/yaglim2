@@ -51,6 +51,38 @@ public class TakeDao {
 		String sqlStatement ="select count(*) from post";
 		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 	}
+	
+	//원하는 위치의 삭제X 포스트 갯수
+	public int getRowPostWhere() {
+		String sqlStatement ="select count(*) from post where not IsDeleted=1";
+		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
+	}//원하는 위치의 삭제X 포스트 갯수
+	public int getRowPostWhere_board(int board_title) {
+		String sqlStatement ="select count(*) from post where not IsDeleted=1 and board_title="+ board_title;
+		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
+	}
+	
+	//게시물 한 페이지에 10개씩 보여주기 페이징 코드입니둥, page-1 받아 *10 한 게시글부터 10개 출력
+	public List <Post> getPostLimit(String nowPage){
+		String miPage= Integer.toString( Integer.parseInt(nowPage) *10 );
+		String sqlStatement = "select * from post where not IsDeleted=1 ORDER BY post_regdate DESC limit "+miPage+",10";
+		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
+			@Override
+			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{
+				Post post = new Post();
+				post.setPost_id(rs.getInt("post_id"));
+				post.setPost_content(rs.getString("post_content"));
+				post.setPost_regdate(rs.getTimestamp("post_regdate"));
+				post.setIsDeleted(rs.getInt("IsDeleted"));
+				post.setPost_title(rs.getString("post_title"));
+				post.setUser_id(rs.getString("user_id"));
+				post.setBoard_title(rs.getInt("board_title"));
+				return post;
+			}
+		});
+	}
+	
+	
 	public List <Post> getPost(){
 		String sqlStatement = "select * from post where not IsDeleted=1 ORDER BY post_regdate DESC";
 		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
@@ -87,6 +119,23 @@ public class TakeDao {
 	}
 	public List <Post> getPost_search(String table, String search){
 		String sqlStatement = "select * from post where not IsDeleted=1 and "+table+" like '%"+search+"%' ORDER BY post_regdate DESC";
+		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
+			@Override
+			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{
+				Post post = new Post();
+				post.setPost_id(rs.getInt("post_id"));
+				post.setPost_content(rs.getString("post_content"));
+				post.setPost_regdate(rs.getTimestamp("post_regdate"));
+				post.setIsDeleted(rs.getInt("IsDeleted"));
+				post.setPost_title(rs.getString("post_title"));
+				post.setUser_id(rs.getString("user_id"));
+				post.setBoard_title(rs.getInt("board_title"));
+				return post;
+			}
+		});
+	}
+	public List <Post> getPost_search_inBoard(int board_title, String table, String search){
+		String sqlStatement = "select * from post where not IsDeleted=1 and board_title="+ board_title +" and "+ table +" like '%"+search+"%' ORDER BY post_regdate DESC";
 		return jdbcTemplate.query(sqlStatement, new RowMapper <Post>() {
 			@Override
 			public Post mapRow(ResultSet rs, int rowNum) throws SQLException{

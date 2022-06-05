@@ -42,13 +42,13 @@
 	<select onchange="location.href=(this.value);">
 		<option value="${pageContext.request.contextPath}/">전체</option>
 		<option value="${pageContext.request.contextPath}/viewBoard?board=1"
-			<c:if test="${ board eq 1 }">selected</c:if>>상비약</option>
+			<c:if test="${ boardd eq 1 }">selected</c:if>>상비약</option>
 		<option value="${pageContext.request.contextPath}/viewBoard?board=2"
-			<c:if test="${ board eq 2 }">selected</c:if>>질문</option>
+			<c:if test="${ boardd eq 2 }">selected</c:if>>질문</option>
 		<option value="${pageContext.request.contextPath}/viewBoard?board=3"
-			<c:if test="${ board eq 3 }">selected</c:if>>정보나눔</option>
+			<c:if test="${ boardd eq 3 }">selected</c:if>>정보나눔</option>
 		<option value="${pageContext.request.contextPath}/viewBoard?board=4"
-			<c:if test="${ board eq 4 }">selected</c:if>>기타</option>
+			<c:if test="${ boardd eq 4 }">selected</c:if>>기타</option>
 	</select>
 </p>
 
@@ -63,7 +63,7 @@
 		<input class="btn btn-success" type="submit" value="검색">
 	
   	</form>
-  
+ 게시판 번호 출력 ${boardd }
   <div id="gap">
   		  <table class="table" style="text-align:center">
   			<thead class="table-light">
